@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 248346951}
   - component: {fileID: 248346953}
   - component: {fileID: 248346952}
+  - component: {fileID: 248346954}
   m_Layer: 5
   m_Name: "po\xE4ng"
   m_TagString: Untagged
@@ -277,6 +278,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248346950}
   m_CullTransparentMesh: 0
+--- !u!114 &248346954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248346950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fa6a5f1ab3e5b44ad492f4234e57c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &422837254
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776143887}
+  - component: {fileID: 776143888}
   m_Layer: 0
   m_Name: MullvadPositions
   m_TagString: Untagged
@@ -548,7 +562,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776143886}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -557,9 +571,21 @@ Transform:
   - {fileID: 642916021}
   - {fileID: 422837255}
   - {fileID: 1684922499}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 841624995}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776143888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776143886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5257bc32c46868847bef525e677d627a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &841624993
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,10 +596,8 @@ GameObject:
   m_Component:
   - component: {fileID: 841624995}
   - component: {fileID: 841624994}
-  - component: {fileID: 841624996}
-  - component: {fileID: 841624997}
   m_Layer: 0
-  m_Name: "Br\xE4de med en trumma"
+  m_Name: Wack-A-Mole Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,145 +663,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 776143887}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &841624996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841624993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efee394ee9cca3f4b9ea4e8f79f23e19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mulls:
-  - {fileID: 5078793870845482793, guid: ce00f61d5624e3444bcf80c19fc92312, type: 3}
-  - {fileID: 5651670429713810114, guid: 2d65257ee50315744b78dc9de67dcc1c, type: 3}
-  - {fileID: 4983692755400282827, guid: 74ab821b6a52e364c871e984352e958d, type: 3}
-  spawns:
-  - {fileID: 867987448}
-  - {fileID: 740803247}
-  - {fileID: 642916021}
-  - {fileID: 422837255}
-  - {fileID: 1684922499}
-  full: 0000000000
-  timer: 0
-  nymull: {fileID: 0}
-  helst: {fileID: 0}
-  range: 2
-  camera: {fileID: 963194227}
-  score: 0
-  liv: 3
-  x: 0
-  loseScreen: {fileID: 135930455}
-  "po\xE4ngtime": 0
-  "gepo\xE4ng": 0
-  numbers: []
-  scoreText: {fileID: 248346952}
-  musik: {fileID: 963194229}
-  ljud: {fileID: 963194229}
---- !u!82 &841624997
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841624993}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 2987072392055911655, guid: 0b320e88a2d9dab4298d4be899ce85aa,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 446d26b990898254eb009fd523cb9aba, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &867987447
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,15 +888,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1072679353}
-  - component: {fileID: 1072679352}
   - component: {fileID: 1072679351}
+  - component: {fileID: 1072679352}
+  - component: {fileID: 1072679354}
   m_Layer: 0
   m_Name: '[GameManager]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1072679351
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1018,8 +909,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 446d26b990898254eb009fd523cb9aba, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.361
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1115,24 +1006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efee394ee9cca3f4b9ea4e8f79f23e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mulls: []
-  spawns: []
-  full: 
-  timer: 0
-  nymull: {fileID: 0}
-  helst: {fileID: 0}
-  range: 0
-  camera: {fileID: 0}
-  score: 0
-  liv: 0
-  x: 0
-  loseScreen: {fileID: 0}
-  "po\xE4ngtime": 5
-  "gepo\xE4ng": 0
-  numbers: []
-  scoreText: {fileID: 0}
-  musik: {fileID: 0}
-  ljud: {fileID: 0}
+  loseScreen: {fileID: 135930455}
+  bakgrundsMusik: {fileID: 963194229}
 --- !u!4 &1072679353
 Transform:
   m_ObjectHideFlags: 0
@@ -1147,6 +1022,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072679354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072679350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc696654d5d7c5498105c257b94002e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 5078793870845482793, guid: ce00f61d5624e3444bcf80c19fc92312, type: 3}
+  - {fileID: 5651670429713810114, guid: 2d65257ee50315744b78dc9de67dcc1c, type: 3}
+  - {fileID: 4983692755400282827, guid: 74ab821b6a52e364c871e984352e958d, type: 3}
+  mullPositions: []
+  fullPositions: []
 --- !u!1 &1684922498
 GameObject:
   m_ObjectHideFlags: 0
