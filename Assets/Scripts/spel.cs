@@ -98,7 +98,8 @@ public class spel : MonoBehaviour
                             score += 3;
                             gepoäng = false;
                             poängtime = 5;
-                        } else
+                        } 
+                        else
                         {
                             score += 1;
                             gepoäng = false;
