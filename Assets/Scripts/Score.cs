@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     private Text myText;
 
-    private void Awake()
+    private void Start()
     {
         myText = GetComponent<Text>();
     }
