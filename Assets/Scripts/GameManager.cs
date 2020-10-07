@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Spel : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static Spel Instance;
+    public static GameManager Instance;
 
     [SerializeField]
     private GameObject loseScreen;
@@ -50,9 +50,9 @@ public class Spel : MonoBehaviour
                 {
                     target.OnClicked();
                 }
-                
+
             }
-            
+
             if (target == null)
             {
                 lives--;

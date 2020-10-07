@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 248346952}
   - component: {fileID: 248346954}
   m_Layer: 5
-  m_Name: "po\xE4ng"
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -889,8 +889,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1072679353}
   - component: {fileID: 1072679351}
-  - component: {fileID: 1072679352}
   - component: {fileID: 1072679354}
+  - component: {fileID: 1072679352}
   m_Layer: 0
   m_Name: '[GameManager]'
   m_TagString: Untagged
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072679350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efee394ee9cca3f4b9ea4e8f79f23e19, type: 3}
+  m_Script: {fileID: 11500000, guid: e6330caa9dd5b0b4e80862e3fd10a678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loseScreen: {fileID: 135930455}

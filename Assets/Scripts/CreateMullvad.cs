@@ -53,7 +53,7 @@ public class CreateMullvad : MonoBehaviour
 
         fullPositions.Add(mullPositions[mullPos]);
 
-        Spel.Instance.mullvadStillAlive = true;
+        GameManager.Instance.mullvadStillAlive = true;
     }
 
 }

@@ -6,28 +6,28 @@ public class Mullvad : MonoBehaviour, IClickable
 {
     public void OnClicked()
     {
-        Spel.Instance.Slåljud.PlayOneShot(Spel.Instance.Slåljud.clip);
+        GameManager.Instance.Slåljud.PlayOneShot(GameManager.Instance.Slåljud.clip);
 
-        print(CreateMullvad.Instance.fullPositions.Remove(gameObject.transform.position));
+        CreateMullvad.Instance.fullPositions.Remove(gameObject.transform.position);
         
 
-        if (Spel.Instance.mullvadStillAlive == true)
+        if (GameManager.Instance.mullvadStillAlive == true)
         {
-            if (Spel.Instance.poängtime > 3)
+            if (GameManager.Instance.poängtime > 3)
             {
-                Spel.Instance.score += 5;
+                GameManager.Instance.score += 5;
             }
-            if (Spel.Instance.poängtime > 1)
+            if (GameManager.Instance.poängtime > 1)
             {
-                Spel.Instance.score += 3;
+                GameManager.Instance.score += 3;
             }
             else
             {
-                Spel.Instance.score += 1;
+                GameManager.Instance.score += 1;
             }
 
-            Spel.Instance.mullvadStillAlive = false;
-            Spel.Instance.poängtime = 5;
+            GameManager.Instance.mullvadStillAlive = false;
+            GameManager.Instance.poängtime = 5;
         }
         Destroy(gameObject);
     }

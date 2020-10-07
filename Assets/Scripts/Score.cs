@@ -10,6 +10,6 @@ public class Score : MonoBehaviour
     }
     private void Update()
     {
-        myText.text = Spel.Instance.score.ToString();
+        myText.text = GameManager.Instance.score.ToString();
     }
 }
