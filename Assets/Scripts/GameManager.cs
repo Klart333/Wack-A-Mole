@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,19 +7,24 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject loseScreen;
+
     [SerializeField]
-    public AudioSource bakgrundsMusik;
+    private AudioSource bakgrundsMusik;
 
-    private Collider[] hitResults;
+    [SerializeField]
+    private float maxDifficulty = 3; // Easily changeable
 
+    [SerializeField]
+    private float difficultyIncreasedFromSharkKill = 0.02f; // Rather long than ununderstanble, right?
+
+    public float difficultyMultiplier = 1;
+
+    public event Action<float> OnSharkKilled;
 
     private int lives = 1;
-    internal int score;
-    internal bool mullvadStillAlive;
-    internal float poängtime = 5;
 
-    internal AudioSource Slåljud;
-    void Start()
+    public AudioSource Slåljud;
+    void Awake()
     {
         if (Instance == null)
         {
@@ -31,27 +34,18 @@ public class GameManager : MonoBehaviour
 
         Slåljud = GetComponent<AudioSource>();
         loseScreen.SetActive(false);
+
+        OnSharkKilled += IncreaseDifficulty; // Whenever we kill a shark we increase the difficulty
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector3 position = GetWorldPointClicked();
+
             IClickable target = null;
-
-            Collider[] hitColliders = Physics.OverlapSphere(mousePos, 1);
-
-            foreach (Collider hit in hitColliders)
-            {
-                target = hit.GetComponent<IClickable>();
-                if (target != null)
-                {
-                    target.OnClicked();
-                }
-
-            }
+            target = CheckForMouseHit(position, target);
 
             if (target == null)
             {
@@ -64,10 +58,29 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (mullvadStillAlive)
+    }
+
+    private IClickable CheckForMouseHit(Vector3 position, IClickable target)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(position, 0.1f);
+
+        foreach (Collider hit in hitColliders)
         {
-            poängtime -= Time.deltaTime;
+            target = hit.GetComponent<IClickable>();
+            if (target != null)
+            {
+                target.OnClicked();
+            }
         }
+
+        return target;
+    }
+
+    private Vector3 GetWorldPointClicked()
+    {
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f); // I don't understand why z has to be 10, and it has to be 10
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        return mousePos;
     }
 
     public void GameOver()
@@ -80,4 +93,19 @@ public class GameManager : MonoBehaviour
         loseScreen.SetActive(true);
         print("Game Over");
     }
+
+    public void SharkKilled(float timeToKill)
+    {
+        OnSharkKilled?.Invoke(timeToKill); // Checks that the event isn't null
+    }
+
+    private void IncreaseDifficulty(float timer)
+    {
+        if (difficultyMultiplier <= maxDifficulty)
+        {
+            difficultyMultiplier += difficultyIncreasedFromSharkKill;
+        }
+        
+    }
+
 }
