@@ -519,7 +519,6 @@ GameObject:
   - component: {fileID: 532330897}
   - component: {fileID: 532330899}
   - component: {fileID: 532330898}
-  - component: {fileID: 532330900}
   m_Layer: 5
   m_Name: InfoText
   m_TagString: Untagged
@@ -642,25 +641,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532330896}
   m_CullTransparentMesh: 0
---- !u!95 &532330900
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532330896}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9c290249302746458947611e691f46e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &625950178
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +892,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1081,6 +1062,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb9e9ef5b1cb6d4785d51f34a53a1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1003371341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   responseText: {fileID: 532330898}
-  responseAnimator: {fileID: 532330900}
+  responseAnimator: {fileID: 0}
 --- !u!4 &1003371343
 Transform:
   m_ObjectHideFlags: 0
@@ -1137,6 +1130,7 @@ GameObject:
   - component: {fileID: 1072679353}
   - component: {fileID: 1072679351}
   - component: {fileID: 1072679352}
+  - component: {fileID: 1072679354}
   m_Layer: 0
   m_Name: '[GameManager]'
   m_TagString: Untagged
@@ -1254,10 +1248,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loseScreen: {fileID: 135930455}
   bakgrundsMusik: {fileID: 963194229}
-  maxDifficulty: 5
+  maxDifficulty: 0
   difficultyIncreasedFromSharkKill: 0.1
   startDifficulty: 1
-  "Sl\xE5ljud": {fileID: 0}
 --- !u!4 &1072679353
 Transform:
   m_ObjectHideFlags: 0
@@ -1272,6 +1265,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072679354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072679350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d021ef271604f4ba7449cacd6ea4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 0}
 --- !u!1 &1386287806
 GameObject:
   m_ObjectHideFlags: 0

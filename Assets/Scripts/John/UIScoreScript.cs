@@ -28,10 +28,11 @@ public class UIScoreScript : MonoBehaviour
     private void IncreaseScore(float sharkTimeToKill)
     {
         int value = baseValueForSharks - (int)sharkTimeToKill;
-        if (value == baseValueForSharks) // DOUBLE (Cool effect)
+        if (sharkTimeToKill < 0.5) // DOUBLE (Cool effect)
         {
             value *= 2;
-            responseText.StartCoroutine("PrintDef", "Double!");
+            responseText.PrintDef("Double!");
+            Camera.main.GetComponent<CameraScript>().StartCoroutine("ScreenShake", 10);
         }
 
         score += value;

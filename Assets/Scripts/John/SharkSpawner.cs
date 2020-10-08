@@ -22,7 +22,7 @@ public class SharkSpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer > (Random.Range(2, 5) / GameManager.Instance.difficultyMultiplier)) // Sharks spawn faster over time
+        if (spawnTimer > (Random.Range(2, 5) / (GameManager.Instance.difficultyMultiplier <= 5 ? GameManager.Instance.difficultyMultiplier : 5))) // Sharks spawn faster over time, max 5
         {
             spawnTimer = 0;
             SpawnShark();
@@ -31,7 +31,6 @@ public class SharkSpawner : MonoBehaviour
 
     private void SpawnShark()
     {
-        print(GameManager.Instance.difficultyMultiplier);
         Vector3 position = RandomScreenToWorldPoint();
 
         Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);

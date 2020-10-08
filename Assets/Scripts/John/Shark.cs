@@ -32,8 +32,6 @@ public class Shark : MonoBehaviour, IClickable
 
     public void OnClicked()
     {
-        GameManager.Instance.Slåljud.PlayOneShot(GameManager.Instance.Slåljud.clip);
-
         GameManager.Instance.SharkKilled(killTimer);
 
         Destroy(gameObject);
