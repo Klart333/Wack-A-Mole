@@ -6,9 +6,6 @@ public class Punch : MonoBehaviour
 {
     private AudioSource hitSound;
 
-    private float hitCoolDown = 0.5f;
-    private float coolDownTimer;
-
     void Awake()
     {
         hitSound = GetComponent<AudioSource>();
@@ -16,11 +13,8 @@ public class Punch : MonoBehaviour
 
     void Update()
     {
-        coolDownTimer += Time.deltaTime;
-
         if (ShouldPunch())
         {
-            coolDownTimer = 0;
 
             hitSound.PlayOneShot(hitSound.clip);
 
@@ -38,7 +32,7 @@ public class Punch : MonoBehaviour
 
     private bool ShouldPunch()
     {
-        return Input.GetMouseButtonDown(0) && coolDownTimer >= hitCoolDown;
+        return Input.GetMouseButtonDown(0);
     }
 
     private Vector3 GetWorldPointClicked()
