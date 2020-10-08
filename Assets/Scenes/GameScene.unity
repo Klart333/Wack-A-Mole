@@ -1154,7 +1154,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 446d26b990898254eb009fd523cb9aba, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 339007f8a58cdbc499dc350e8ba0cf08, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.361
   m_Pitch: 1
@@ -1255,8 +1255,8 @@ MonoBehaviour:
   loseScreen: {fileID: 135930455}
   bakgrundsMusik: {fileID: 963194229}
   maxDifficulty: 5
-  difficultyIncreasedFromSharkKill: 0.05
-  difficultyMultiplier: 5
+  difficultyIncreasedFromSharkKill: 0.1
+  startDifficulty: 1
   "Sl\xE5ljud": {fileID: 0}
 --- !u!4 &1072679353
 Transform:
