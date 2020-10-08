@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float difficultyIncreasedFromSharkKill = 0.02f; // Rather long than ununderstanble, right?
 
-    public float difficultyMultiplier = 1;
+    [SerializeField]
+    private float startDifficulty = 1;
+
+    public float difficultyMultiplier { get; private set; }
+
 
     public event Action<float> OnSharkKilled;
 
@@ -32,10 +36,12 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
+        difficultyMultiplier = startDifficulty;
+
         Slåljud = GetComponent<AudioSource>();
         loseScreen.SetActive(false);
 
-        OnSharkKilled += IncreaseDifficulty; // Whenever we kill a shark we increase the difficulty
+        OnSharkKilled += IncreaseDifficultyOnSharkKill; 
     }
 
     void Update()
@@ -99,7 +105,7 @@ public class GameManager : MonoBehaviour
         OnSharkKilled?.Invoke(timeToKill); // Checks that the event isn't null
     }
 
-    private void IncreaseDifficulty(float timer)
+    private void IncreaseDifficultyOnSharkKill(float timer)
     {
         if (difficultyMultiplier <= maxDifficulty)
         {

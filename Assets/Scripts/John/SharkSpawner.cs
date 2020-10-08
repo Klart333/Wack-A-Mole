@@ -31,7 +31,7 @@ public class SharkSpawner : MonoBehaviour
 
     private void SpawnShark()
     {
-        print("Trying To Spawn");
+        print(GameManager.Instance.difficultyMultiplier);
         Vector3 position = RandomScreenToWorldPoint();
 
         Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);

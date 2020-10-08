@@ -1254,9 +1254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loseScreen: {fileID: 135930455}
   bakgrundsMusik: {fileID: 963194229}
-  maxDifficulty: 3
-  difficultyIncreasedFromSharkKill: 0.01
-  difficultyMultiplier: 1
+  maxDifficulty: 5
+  difficultyIncreasedFromSharkKill: 0.05
+  difficultyMultiplier: 5
   "Sl\xE5ljud": {fileID: 0}
 --- !u!4 &1072679353
 Transform:
