@@ -5,21 +5,27 @@ using UnityEngine;
 
 public class Shark : MonoBehaviour, IClickable
 {
-    // A lot of SerializeField, this is for variability between sharks set in the inspector, easy :D
+    [SerializeField]
+    private float totalTimeBeforeChomp = 6; // The time is divided over the amount of sharkPhases
 
     [SerializeField]
-    private Sprite[] sharkPhases;
+    private int phases = 3;
 
-    [SerializeField]
-    private float totalTimeBeforeChomp = 12; // The time is divided over the amount of sharkPhases
+    private Animator animator;
 
-    private float phaseTimer; // Could have just one 'timer' but it feels a lot clearer this way
+ 
+
     private float killTimer;
     
-    private int currentPhase = 0;
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+
+        StartCoroutine("Phases");
+    }
+
     private void Update()
     {
-        phaseTimer += Time.deltaTime;
         killTimer += Time.deltaTime;
 
         Grow();
@@ -37,5 +43,26 @@ public class Shark : MonoBehaviour, IClickable
         Destroy(gameObject);
     }
 
+    private IEnumerator Phases()
+    {
+        float timeBetweenPhases = totalTimeBeforeChomp / phases;
 
+        for (int i = 1; i <= phases; i++)
+        {
+            animator.SetTrigger("Phase" + i.ToString());
+
+            yield return new WaitForSeconds(timeBetweenPhases);
+
+            if (i == phases)
+            {
+                Bite();
+            }
+        }
+    }
+
+    private void Bite()
+    {
+        animator.SetTrigger("SharkBite");
+        // Gameover
+    }
 }

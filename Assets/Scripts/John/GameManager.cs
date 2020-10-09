@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verkligen poola alla hajar, SPECIELLT om det ska funka på mobil
+{ 
     public static GameManager Instance;
 
     [SerializeField]

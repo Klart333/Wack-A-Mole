@@ -10,6 +10,7 @@ public class SharkSpawner : MonoBehaviour
     private GameObject[] prefabs;
 
     private float spawnTimer;
+    private int sortingLayerNum = 0;
 
     private void Awake()
     {
@@ -33,7 +34,8 @@ public class SharkSpawner : MonoBehaviour
     {
         Vector3 position = RandomScreenToWorldPoint();
 
-        Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);
+        var shark = Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);
+        shark.GetComponent<SpriteRenderer>().sortingOrder = sortingLayerNum--;
     }
 
     private static Vector3 RandomScreenToWorldPoint()

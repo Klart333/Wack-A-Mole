@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1190555253
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e62e4bc692b29e6459d6d8c974260cb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5ee6bd75139b2479bfb2cf9e99ca14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharkPhases: []
-  timeBetweenPhases: 0
+  totalTimeBeforeChomp: 6
+  phases: 3
 --- !u!95 &1373493915
 Animator:
   serializedVersion: 3
