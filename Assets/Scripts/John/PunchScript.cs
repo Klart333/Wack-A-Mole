@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Punch : MonoBehaviour
+public class PunchScript : MonoBehaviour
 {
     private AudioSource hitSound;
 
@@ -15,24 +15,28 @@ public class Punch : MonoBehaviour
     {
         if (ShouldPunch())
         {
-
-            hitSound.PlayOneShot(hitSound.clip);
-
-            Vector3 position = GetWorldPointClicked();
-
-            IClickable target = null;
-            target = CheckForMouseHit(position, target);
-
-            if (target == null)
+            if (Punch() == false) // If we hit nothing
             {
-                // MISS
+                // Miss
             }
+            
         }
     }
-
     private bool ShouldPunch()
     {
         return Input.GetMouseButtonDown(0);
+    }
+
+    private bool Punch()
+    {
+        hitSound.PlayOneShot(hitSound.clip);
+
+        Vector3 position = GetWorldPointClicked();
+
+        IClickable target = null;
+        target = TryPunchAtPosition(position);
+
+        return (target != null); // We hit something if target isn't null
     }
 
     private Vector3 GetWorldPointClicked()
@@ -42,8 +46,10 @@ public class Punch : MonoBehaviour
         return mousePos;
     }
 
-    private IClickable CheckForMouseHit(Vector3 position, IClickable target)
+    private IClickable TryPunchAtPosition(Vector3 position)
     {
+        IClickable target = null;
+
         Collider[] hitColliders = Physics.OverlapSphere(position, 0.1f);
 
         foreach (Collider hit in hitColliders)
@@ -57,4 +63,6 @@ public class Punch : MonoBehaviour
 
         return target;
     }
+
+
 }

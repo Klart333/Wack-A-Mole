@@ -32,7 +32,9 @@ public class UIScoreScript : MonoBehaviour
         {
             value *= 2;
             responseText.PrintDef("Double!");
-            Camera.main.GetComponent<CameraScript>().StartCoroutine("ScreenShake", 10);
+
+            object[] parms = new object[] {0.1f, 2}; 
+            Camera.main.GetComponent<CameraScript>().StartCoroutine("ScreenShake", parms); // Could add it to the event but calling it from here allows me to easier implement bigger screenshakes from gunshots and such
         }
 
         score += value;
