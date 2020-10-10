@@ -34,8 +34,6 @@ public class Audio : MonoBehaviour
         {
             if (stackingDoubleTimer < stackingDoubleMaxTimer)
             {
-                print("Higher Pitch");
-
                 stackingPitch += 0.1f;
                 PlaySoundEffect("DoubleEffect", "ArcadeBlip1", stackingPitch);
 
