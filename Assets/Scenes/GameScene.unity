@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 2490533133446649090, guid: 38afb7ed078fc5a4786bce3a2463ecb1, type: 3}
+  - {fileID: -7462018308785558147, guid: 38afb7ed078fc5a4786bce3a2463ecb1, type: 3}
 --- !u!4 &147621690
 Transform:
   m_ObjectHideFlags: 0
@@ -1442,8 +1442,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.309
-  m_Pitch: 0.9
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1540,6 +1540,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: daaf88a10c56b1d429e0e0babf926caa, type: 3}
+  audioMixerGroups:
+  - {fileID: -6442135358468556767, guid: 0b320e88a2d9dab4298d4be899ce85aa, type: 2}
+  stackingDoubleMaxTimer: 0.75
 --- !u!1 &1926341793
 GameObject:
   m_ObjectHideFlags: 0

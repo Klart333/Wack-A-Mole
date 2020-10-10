@@ -7,7 +7,7 @@ public class SharkSpawner : MonoBehaviour
     public static SharkSpawner Instance;
 
     [SerializeField]
-    private GameObject[] prefabs;
+    private Shark[] prefabs; // Array of shark prefabs, accessed through the script
 
     private float spawnTimer;
     private int sortingLayerNum = 0;
@@ -33,8 +33,10 @@ public class SharkSpawner : MonoBehaviour
     private void SpawnShark()
     {
         Vector3 position = RandomScreenToWorldPoint();
+        Shark prefab = prefabs[Random.Range(0, prefabs.Length)];
 
-        var shark = Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);
+        var shark = prefab.GetAtPosAndRot<Shark>(position, prefab.gameObject.transform.rotation); // We call the inherited method 'Get' which asks the Pool for a GameObject from the queue and then makes it active
+
         shark.GetComponent<SpriteRenderer>().sortingOrder = sortingLayerNum--;
     }
 

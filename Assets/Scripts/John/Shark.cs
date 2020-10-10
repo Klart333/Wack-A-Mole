@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shark : MonoBehaviour, IClickable
+public class Shark : PooledMonoBehaviour, IClickable
 {
     [SerializeField]
     private float totalTimeBeforeChomp = 6; // The time is divided over the amount of sharkPhases
@@ -13,15 +13,18 @@ public class Shark : MonoBehaviour, IClickable
 
     private Animator animator;
 
- 
-
     private float killTimer;
     
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+    private void OnEnable()
+    {
+        ResetShark();
 
         StartCoroutine("Phases");
+
     }
 
     private void Update()
@@ -29,6 +32,12 @@ public class Shark : MonoBehaviour, IClickable
         killTimer += Time.deltaTime;
 
         Grow();
+    }
+
+    private void ResetShark()
+    {
+        gameObject.transform.localScale = Vector3.one;
+        killTimer = 0;
     }
 
     private void Grow()
@@ -40,7 +49,7 @@ public class Shark : MonoBehaviour, IClickable
     {
         GameManager.Instance.SharkKilled(killTimer);
 
-        Destroy(gameObject);
+        ReturnToPool(); // Returns the shark to the pool
     }
 
     private IEnumerator Phases()
@@ -49,6 +58,8 @@ public class Shark : MonoBehaviour, IClickable
 
         for (int i = 1; i <= phases; i++)
         {
+            animator.ResetTrigger("Phase1"); // When called from the start the phase1 is not used and then stays activated
+
             animator.SetTrigger("Phase" + i.ToString());
 
             yield return new WaitForSeconds(timeBetweenPhases);
@@ -63,6 +74,15 @@ public class Shark : MonoBehaviour, IClickable
     private void Bite()
     {
         animator.SetTrigger("SharkBite");
-        // Gameover
+        // Gameover, allow the bite then gameover
     }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        StopCoroutine("Phases");
+    }
+
+ 
 }
