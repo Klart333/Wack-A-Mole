@@ -23,11 +23,18 @@ public class SharkSpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer > (Random.Range(2, 5) / (GameManager.Instance.difficultyMultiplier <= 5 ? GameManager.Instance.difficultyMultiplier : 5))) // Sharks spawn faster over time, max 5
+        if (ShouldSpawn()) 
         {
             spawnTimer = 0;
             SpawnShark();
         }
+    }
+
+    private bool ShouldSpawn()
+    {
+        float spawnTime = Random.Range(2, 5) / (GameManager.Instance.DifficultyMultiplier <= 5 ? GameManager.Instance.DifficultyMultiplier : 5); // Spawns sharks faster over time, max 5
+
+        return (spawnTimer >= spawnTime) && (GameManager.Instance.GameOvering == false);
     }
 
     private void SpawnShark()

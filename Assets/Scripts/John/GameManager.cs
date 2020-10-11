@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
     [SerializeField]
     private float startDifficulty = 1;
-    public float difficultyMultiplier { get; private set; }
+
+    public bool GameOvering = false;
+    public float DifficultyMultiplier { get; private set; }
 
     public event Action<float> OnSharkKilled;
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
             DontDestroyOnLoad(this.gameObject);
         }
 
-        difficultyMultiplier = startDifficulty;
+        DifficultyMultiplier = startDifficulty;
 
         loseScreen.SetActive(false);
 
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
         Time.timeScale = 0;
 
         loseScreen.SetActive(true);
+
         print("Game Over");
     }
 
@@ -60,14 +63,14 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     {
         if (maxDifficulty != 0)
         {
-            if (difficultyMultiplier <= maxDifficulty)
+            if (DifficultyMultiplier <= maxDifficulty)
             {
-                difficultyMultiplier += difficultyIncreasedFromSharkKill;
+                DifficultyMultiplier += difficultyIncreasedFromSharkKill;
             }
         }
         else
         {
-            difficultyMultiplier += difficultyIncreasedFromSharkKill;
+            DifficultyMultiplier += difficultyIncreasedFromSharkKill;
         }
         
         

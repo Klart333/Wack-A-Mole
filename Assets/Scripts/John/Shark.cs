@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Animator))]
 public class Shark : PooledMonoBehaviour, IClickable
 {
     [SerializeField]
@@ -42,6 +43,10 @@ public class Shark : PooledMonoBehaviour, IClickable
 
     private void Grow()
     {
+        if (GameManager.Instance.GameOvering) // The sharks stop to give the illusion of the timeScale being set to 0
+            return;
+
+
         transform.localScale += new Vector3(1, 1, 0) * Time.deltaTime;
     }
 
@@ -58,23 +63,29 @@ public class Shark : PooledMonoBehaviour, IClickable
 
         for (int i = 1; i <= phases; i++)
         {
+            if (GameManager.Instance.GameOvering)
+                break;
+
             animator.ResetTrigger("Phase1"); // When called from the start the phase1 is not used and then stays activated
 
             animator.SetTrigger("Phase" + i.ToString());
 
             yield return new WaitForSeconds(timeBetweenPhases);
-
             if (i == phases)
             {
-                Bite();
+                StartCoroutine("Bite");
             }
         }
     }
 
-    private void Bite()
+    private IEnumerator Bite()
     {
         animator.SetTrigger("SharkBite");
-        // Gameover, allow the bite then gameover
+        GameManager.Instance.GameOvering = true;
+
+        yield return new WaitForSeconds(0.55f);
+
+        GameManager.Instance.GameOver();
     }
 
     protected override void OnDisable()

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Du vet det här scriptet blev väldigt svårt att läsa med alla kommentarer, det här är varför jag tycker att koden borde få tala för sig själv, bara gör tydlig kod, och om den inte är tydlig smacka på ett F. kappa
+// Du vet, det här scriptet blev väldigt svårt att läsa med alla kommentarer. Det här är varför jag tycker att koden borde få tala för sig själv, bara gör tydlig kod, och om den inte är tydlig smacka på ett F. kappa
 public class Pool : MonoBehaviour
 {
     // Note: Some methods are numbered, this is for clarity on how the main steps for how spawning the objects works
@@ -50,7 +50,7 @@ public class Pool : MonoBehaviour
         return pooledObject as T; // We return the element/object, passed as the type we specified
     }
 
-    private void GrowPool() // (4.5 only called in the beginning and on rare occasions) Grows the pool in the beginning of the game, or anytime it need to be expanded
+    private void GrowPool() // (4.5, only called in the beginning and on rare occasions) Grows the pool in the beginning of the game, or anytime it need to be expanded
     {
         for (int i = 0; i < poolPrefab.InitialPoolSize; i++) // We specify how big the pool of the prefab this script handles, and create that many disabled gameobjects, ready to be enabled whenever we want
         {

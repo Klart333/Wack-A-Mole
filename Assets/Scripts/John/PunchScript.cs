@@ -24,7 +24,7 @@ public class PunchScript : MonoBehaviour
     }
     private bool ShouldPunch()
     {
-        return Input.GetMouseButtonDown(0);
+        return (Input.GetMouseButtonDown(0) && GameManager.Instance.GameOvering == false);
     }
 
     private bool Punch()

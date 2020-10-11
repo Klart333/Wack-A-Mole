@@ -361,6 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: -7462018308785558147, guid: 38afb7ed078fc5a4786bce3a2463ecb1, type: 3}
+  - {fileID: 2327865654143268443, guid: 65559d3f4691341459e6b7988edca952, type: 3}
 --- !u!4 &147621690
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,6 +1252,7 @@ MonoBehaviour:
   maxDifficulty: 0
   difficultyIncreasedFromSharkKill: 0.1
   startDifficulty: 1
+  GameOvering: 0
 --- !u!4 &1072679353
 Transform:
   m_ObjectHideFlags: 0
