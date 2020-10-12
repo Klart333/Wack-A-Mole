@@ -7,9 +7,6 @@ public class UIResponseText : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI responseText;
 
-    [SerializeField]
-    private Animator responseAnimator;
-
     bool increasingSize = false; // For effect we want the increasing to keep increasing
     public IEnumerator Print(string text, float time)
     {

@@ -28,9 +28,12 @@ public class UIScoreScript : MonoBehaviour
     private void IncreaseScore(float sharkTimeToKill)
     {
         int value = baseValueForSharks - Mathf.RoundToInt(sharkTimeToKill);
-        if (sharkTimeToKill < 5) // DOUBLE (Cool effect)
+        value = Mathf.RoundToInt((float)value * (1 + GameManager.Instance.hitSpree / 10));
+
+        if (sharkTimeToKill < 0.5f) // DOUBLE (Cool effect)
         {
             value *= 2;
+
             responseText.PrintDef("Double!");
 
             object[] parms = new object[] {0.1f, 2}; 

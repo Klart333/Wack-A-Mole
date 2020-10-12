@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     [SerializeField]
     private float startDifficulty = 1;
 
+
+    public int hitSpree = 0;
     public bool GameOvering = false;
     public float DifficultyMultiplier { get; private set; }
 
@@ -50,8 +52,6 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
         Time.timeScale = 0;
 
         loseScreen.SetActive(true);
-
-        print("Game Over");
     }
 
     public void SharkKilled(float timeToKill)

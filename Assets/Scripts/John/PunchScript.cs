@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PunchScript : MonoBehaviour
 {
+    [SerializeField]
+    private UIHitSpree hitSpree;
+
     private AudioSource hitSound;
 
     void Awake()
@@ -15,11 +18,17 @@ public class PunchScript : MonoBehaviour
     {
         if (ShouldPunch())
         {
-            if (Punch() == false) // If we hit nothing
+            if (Punch() == true) // If we hit something
             {
-                // Miss
+                GameManager.Instance.hitSpree++;
+                hitSpree.UpdateHitSpree();
             }
-            
+            else
+            {
+                GameManager.Instance.hitSpree = 0;
+                hitSpree.UpdateHitSpree();
+            }
+
         }
     }
     private bool ShouldPunch()

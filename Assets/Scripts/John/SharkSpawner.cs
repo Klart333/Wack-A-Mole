@@ -32,7 +32,15 @@ public class SharkSpawner : MonoBehaviour
 
     private bool ShouldSpawn()
     {
-        float spawnTime = Random.Range(2, 5) / (GameManager.Instance.DifficultyMultiplier <= 5 ? GameManager.Instance.DifficultyMultiplier : 5); // Spawns sharks faster over time, max 5
+        float spawnTime;
+        if (GameManager.Instance.DifficultyMultiplier <= 5)
+        {
+            spawnTime = Random.Range(2, 5) / GameManager.Instance.DifficultyMultiplier;
+        }
+        else
+        {
+            spawnTime = Random.Range(0.2f, 0.5f) / Mathf.Log10(GameManager.Instance.DifficultyMultiplier);
+        }
 
         return (spawnTimer >= spawnTime) && (GameManager.Instance.GameOvering == false);
     }
