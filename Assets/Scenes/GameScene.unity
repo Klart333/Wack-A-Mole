@@ -361,7 +361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: -7462018308785558147, guid: 38afb7ed078fc5a4786bce3a2463ecb1, type: 3}
-  - {fileID: 2327865654143268443, guid: 65559d3f4691341459e6b7988edca952, type: 3}
 --- !u!4 &147621690
 Transform:
   m_ObjectHideFlags: 0
@@ -1249,7 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loseScreen: {fileID: 135930455}
   bakgrundsMusik: {fileID: 963194229}
-  maxDifficulty: 0
+  maxDifficulty: 4
   difficultyIncreasedFromSharkKill: 0.1
   startDifficulty: 1
   GameOvering: 0
@@ -1544,7 +1543,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: daaf88a10c56b1d429e0e0babf926caa, type: 3}
   audioMixerGroups:
   - {fileID: -6442135358468556767, guid: 0b320e88a2d9dab4298d4be899ce85aa, type: 2}
-  stackingDoubleMaxTimer: 0.75
+  stackingDoubleMaxTimer: 75
 --- !u!1 &1926341793
 GameObject:
   m_ObjectHideFlags: 0
