@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menumanager : MonoBehaviour
 {
+    // metoder för knapperna, start och quit
    public void Startgame()
     {
         SceneManager.LoadScene(1);
