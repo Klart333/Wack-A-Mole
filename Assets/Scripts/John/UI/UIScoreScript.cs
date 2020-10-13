@@ -30,7 +30,7 @@ public class UIScoreScript : MonoBehaviour
         int value = baseValueForSharks - Mathf.RoundToInt(sharkTimeToKill);
         value = Mathf.RoundToInt((float)value * (1 + GameManager.Instance.hitSpree / 10));
 
-        if (sharkTimeToKill < 0.5f) // DOUBLE (Cool effect)
+        if (sharkTimeToKill < 0.75f) // DOUBLE (Cool effect)
         {
             value *= 2;
 

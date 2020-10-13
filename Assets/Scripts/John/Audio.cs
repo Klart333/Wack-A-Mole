@@ -30,7 +30,7 @@ public class Audio : MonoBehaviour
     }
     private void AudioOnSharkKill(float timeToKillShark)
     {
-        if (timeToKillShark < 0.5f)
+        if (timeToKillShark < 0.75f)
         {
             if (stackingDoubleTimer < stackingDoubleMaxTimer)
             {
