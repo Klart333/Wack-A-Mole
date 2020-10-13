@@ -10,7 +10,6 @@ public class UIHitSpree : MonoBehaviour
 
     public void UpdateHitSpree()
     {
-        print(spreeText);
         spreeText.text = GameManager.Instance.hitSpree + "x";
         if (GameManager.Instance.hitSpree == 0)
         {

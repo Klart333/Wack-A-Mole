@@ -6,6 +6,8 @@ public class PowerupManager : MonoBehaviour
 {
     public static PowerupManager Instance;
 
+    public bool GunActive; 
+
     private void Awake()
     {
         if (Instance == null)
@@ -14,6 +16,4 @@ public class PowerupManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
-
-
 }
