@@ -11,7 +11,7 @@ public class UIActivateGun : MonoBehaviour
 
     private bool gunActivatible;
 
-    private float gunCooldown = 20f;
+    private float gunCooldown = 10f;
     private float coolDownTimer;
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class UIActivateGun : MonoBehaviour
 
     private void CheckIfGun(float timeToKill)
     {
-        if (GameManager.Instance.hitSpree >= 19 && coolDownTimer >= gunCooldown)
+        if (GameManager.Instance.hitSpree >= 0 && coolDownTimer >= gunCooldown)
         {
             GunActivatible();
         }
