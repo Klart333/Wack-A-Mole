@@ -9,14 +9,16 @@ public class UIScoreScript : MonoBehaviour
     [SerializeField]
     private UIResponseText responseText;
 
-    private int score;
+   [SerializeField]
+    private int baseValueForSharks = 12; // Try to get different values for different sharks
     public int Score { get { return score; } } // Protects score so that only his clone big brother can be accesed, read only
 
-    [SerializeField]
-    private int baseValueForSharks = 12; // Try to get different values for different sharks
+    private int score;
+    private CameraScript cameraScript;
 
     private void Start()
     {
+        cameraScript = Camera.main.GetComponent<CameraScript>();
         GameManager.Instance.OnSharkKilled += IncreaseScore;
     }
 
@@ -72,10 +74,14 @@ public class UIScoreScript : MonoBehaviour
         value = Mathf.RoundToInt(value * multiplicativeValue);
         responseText.PrintDef(response);
 
-        float[] parms = new float[] { screenShakeAmount, screenShakeTimes };
+        Vector2[] parms = new Vector2[] { new Vector2(0.1f, 0.1f), new Vector2(100, -100), new Vector2(10, 0) };
+        cameraScript.StartCoroutine("ScreenShakeSinWave", parms);
+
+        /*float[] parms = new float[] { screenShakeAmount, screenShakeTimes };
 
         Camera.main.GetComponent<CameraScript>().StartCoroutine("ScreenShake", parms); // Could add it to the event but calling it from here allows me to easier implement bigger screenshakes from gunshots and such
-        
+        */
+
         return value;
     }
 }
