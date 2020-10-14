@@ -5,13 +5,14 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
 
-    public IEnumerator ScreenShake(object[] parms)
+    public IEnumerator ScreenShake(float[] parms)
     {
         // Parameter One = Shake Amount
-        // Parameter Two = Shake Length
+        // Parameter Two = Shake Times
 
-        int shakeLength = (int)parms[1];
         Vector3 position = new Vector3((float)parms[0], 0, 0);
+
+        int shakeLength = Mathf.RoundToInt(parms[1]);
 
         for (int i = 0; i < shakeLength; i++)
         {

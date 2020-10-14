@@ -6,7 +6,7 @@ public class PowerupManager : MonoBehaviour
 {
     public static PowerupManager Instance;
 
-    public bool GunActive; 
+    public bool gunActive = false; 
 
     private void Awake()
     {
