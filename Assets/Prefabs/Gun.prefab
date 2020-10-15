@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPoolSize: 2
   shots: 10
+  rotationForce: 1.5
 --- !u!1 &480223323959119644
 GameObject:
   m_ObjectHideFlags: 0

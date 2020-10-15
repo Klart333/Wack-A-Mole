@@ -9,11 +9,14 @@ public class UIScoreScript : MonoBehaviour
     [SerializeField]
     private UIResponseText responseText;
 
-   [SerializeField]
+    [SerializeField]
     private int baseValueForSharks = 12; // Try to get different values for different sharks
+
     public int Score { get { return score; } } // Protects score so that only his clone big brother can be accesed, read only
 
     private int score;
+    private float doubleTime = 0.75f;
+
     private CameraScript cameraScript;
 
     private void Start()
@@ -39,18 +42,12 @@ public class UIScoreScript : MonoBehaviour
         }
 
 
-        if (sharkTimeToKill < 0.75f) // DOUBLE (Cool effect)
+        if (sharkTimeToKill < doubleTime) 
         {
             value = MultiplyEffect(value, 2f, "Double!", 0.1f, 2);
         }
 
         AddAndUpdateScore(value);
-    }
-
-    private void AddAndUpdateScore(int value)
-    {
-        score += value;
-        UpdateScore();
     }
 
     private bool CheckForGunHits(float sharkTimeToKill, int value)
@@ -77,11 +74,11 @@ public class UIScoreScript : MonoBehaviour
         Vector2[] parms = new Vector2[] { new Vector2(0.1f, 0.1f), new Vector2(100, -100), new Vector2(10, 0) };
         cameraScript.StartCoroutine("ScreenShakeSinWave", parms);
 
-        /*float[] parms = new float[] { screenShakeAmount, screenShakeTimes };
-
-        Camera.main.GetComponent<CameraScript>().StartCoroutine("ScreenShake", parms); // Could add it to the event but calling it from here allows me to easier implement bigger screenshakes from gunshots and such
-        */
-
         return value;
+    }
+    private void AddAndUpdateScore(int value)
+    {
+        score += value;
+        UpdateScore();
     }
 }

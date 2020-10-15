@@ -7,32 +7,25 @@ public class GunScript : PooledMonoBehaviour
     [SerializeField]
     private int shots = 10;
 
+    [SerializeField]
+    private float rotationForce = 10;
+
     private Vector3 lastPosition = new Vector3();
 
-    private float speed; 
+    private float deltaSpeed;
+    private float deltaDistance;
     private void Update()
     {
         FollowMouse();
         GetSpeed();
+        SwingToZero();
 
-        // StartCoroutine("SwingToGoal", speed);
         float currentZ = transform.eulerAngles.z;
-        currentZ += speed;
-        transform.eulerAngles = new Vector3(0, 0, currentZ);
+        float targetAngle = currentZ - (deltaSpeed * rotationForce);
 
-        if (speed == 0)
-        {
-            if (currentZ < 0)
-            {
-                currentZ++;
-            }
-            else
-            {
-                currentZ--;
-            }
-        }
+        Quaternion target = transform.rotation * Quaternion.AngleAxis(targetAngle - transform.eulerAngles.z, new Vector3(0, 0, 1));
 
-        print(currentZ);
+        transform.rotation = Quaternion.Lerp(transform.rotation, target, 0.05f);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -43,25 +36,30 @@ public class GunScript : PooledMonoBehaviour
         lastPosition = transform.position;
     }
 
-    private void GetSpeed()
-    {
-        float distance = Mathf.Pow((lastPosition.x - transform.position.x), 2) + Mathf.Pow((lastPosition.y - transform.position.y), 2);
-        distance = Mathf.Sqrt(distance);
-
-        // We need the direction
-        if (lastPosition.magnitude < transform.position.magnitude)
-        {
-            distance = -distance;
-        }
-
-        speed = distance / Time.deltaTime;
-    }
-
     private void FollowMouse()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 position = Vector3Extensions.ReplaceWith(mousePos, z: -8);
+        Vector3 position = mousePos.ReplaceWith(z: -8); // Replaces the z of the vector3 to the specified -8
         transform.position = position;
+    }
+    private void GetSpeed()
+    {
+        deltaDistance = Vector3.Distance(transform.position, lastPosition);
+
+        if (lastPosition.x > transform.position.x || lastPosition.y > transform.position.y) // If we're going negativ on the x or y we set the deltaDistance to negativ
+        {
+            deltaDistance *= -1;
+        }
+        
+
+        deltaSpeed = deltaDistance / Time.deltaTime;
+    }
+
+    private void SwingToZero()
+    {
+        Quaternion target = transform.rotation * Quaternion.AngleAxis(0 - transform.eulerAngles.z, new Vector3(0, 0, 1)); // Gets the current rotation and changes the Z value using the AngleAxis method, may be a kind of roundabout way of setting a target with a z of 0, but quaternions dont really work the same way with angles n shit so i don't really feel challenged to improve it 
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, target, 0.01f); // Lerps the rotation between the target of 0 on the z and the current rotation
     }
 
     private void CheckForDisable()
@@ -74,17 +72,5 @@ public class GunScript : PooledMonoBehaviour
             gameObject.SetActive(false);
 
         }
-    }
-
-    private IEnumerator SwingToGoal(float speed)
-    {
-
-        int times = 20;
-        for (int i = 0; i < times; i++)
-        {
-            
-        }
-        yield return new WaitForSeconds(0.1f);
-
     }
 }
