@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Audio : MonoBehaviour
+public class Audio : MonoBehaviour // I dont like the way the audio is called, should be called externaly not internaly
 {
+    public static Audio Instance;
+
     [SerializeField]
     private AudioClip[] audioClips;
 
@@ -17,7 +19,14 @@ public class Audio : MonoBehaviour
 
     private float stackingDoubleTimer;
     private float stackingPitch = 1;
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -50,14 +59,22 @@ public class Audio : MonoBehaviour
         }
     }
 
-    private void PlaySoundEffect(string audioMixerGroupToFind, string audioClipToFind, float pitch = 1)
+    public void PlaySoundEffect(string audioMixerGroupToFind, string audioClipToFind, float pitch = 1)
     {
         AudioMixerGroup audioMixerGroupFound = FindMixerGroup(audioMixerGroupToFind);
-        audioMixerGroupFound.audioMixer.SetFloat("DoubleEffectPitch", pitch);
-        audioSource.outputAudioMixerGroup = audioMixerGroupFound;
+
+        if (audioMixerGroupFound != null)
+        {
+            audioMixerGroupFound.audioMixer.SetFloat("DoubleEffectPitch", pitch);
+            audioSource.outputAudioMixerGroup = audioMixerGroupFound;
+        }
 
         AudioClip audioClipToPlay = FindAudioClip(audioClipToFind);
-        audioSource.PlayOneShot(audioClipToPlay);
+
+        if (audioClipToPlay != null)
+        {
+            audioSource.PlayOneShot(audioClipToPlay);
+        }
     }
 
     private AudioMixerGroup FindMixerGroup(string groupToFind)

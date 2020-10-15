@@ -35,7 +35,7 @@ public class UIActivateGun : MonoBehaviour
 
     private void CheckIfGun(float timeToKill)
     {
-        if (GameManager.Instance.hitSpree >= 0 && coolDownTimer >= gunCooldown)
+        if (GameManager.Instance.hitSpree >= 20 && coolDownTimer >= gunCooldown)
         {
             GunActivatible();
         }
