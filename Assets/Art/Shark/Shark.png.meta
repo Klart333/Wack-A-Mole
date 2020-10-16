@@ -1,7 +1,40 @@
 fileFormatVersion: 2
-guid: e62e4bc692b29e6459d6d8c974260cb9
+guid: b273b5a4f79564f4c8f59e864a342240
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7548570620251598570
+    second: HajSpriteSheet-removebg-preview_0
+  - first:
+      213: 4491984828599582410
+    second: HajSpriteSheet-removebg-preview_1
+  - first:
+      213: 7310158054762943519
+    second: HajSpriteSheet-removebg-preview_2
+  - first:
+      213: 4211415582633327691
+    second: HajSpriteSheet-removebg-preview_3
+  - first:
+      213: 5222630193181585537
+    second: HajSpriteSheet-removebg-preview_4
+  - first:
+      213: 6067503496864338320
+    second: HajSpriteSheet-removebg-preview_5
+  - first:
+      213: 2877993897912513612
+    second: HajSpriteSheet-removebg-preview_6
+  - first:
+      213: -6104823404476930349
+    second: HajSpriteSheet-removebg-preview_7
+  - first:
+      213: -5175779694063416316
+    second: HajSpriteSheet-removebg-preview_8
+  - first:
+      213: -4375937334103757922
+    second: HajSpriteSheet-removebg-preview_9
+  - first:
+      213: -7634982063087652631
+    second: HajSpriteSheet-removebg-preview_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,12 +73,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 860
+  spritePixelsToUnits: 29
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -85,11 +118,242 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 235
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61114f1d3071e3790800000000000000
+      internalID: -7548570620251598570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 234
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace3f1de66cb65e30800000000000000
+      internalID: 4491984828599582410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 233
+        width: 70
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f141b1a1506e27560800000000000000
+      internalID: 7310158054762943519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 227
+        width: 76
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c776cc824f17a30800000000000000
+      internalID: 4211415582633327691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 221
+        width: 76
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18071d17d728a7840800000000000000
+      internalID: 5222630193181585537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 122
+        width: 77
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0911a0c884a143450800000000000000
+      internalID: 6067503496864338320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 119
+        width: 91
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4431dea330b0f720800000000000000
+      internalID: 2877993897912513612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 109
+        width: 118
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d669a7557f474ba0800000000000000
+      internalID: -6104823404476930349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 107
+        width: 98
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c8bab6acfeb28b0800000000000000
+      internalID: -5175779694063416316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 105
+        width: 104
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b2069ed2c8543c0800000000000000
+      internalID: -4375937334103757922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HajSpriteSheet-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 9
+        width: 102
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e07e27f3481b0690800000000000000
+      internalID: -7634982063087652631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 179cedd691c83e643a2a73a4dee72dee
     internalID: 0
     vertices: []
     indices: 

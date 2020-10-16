@@ -50,7 +50,8 @@ public class SharkSpawner : MonoBehaviour
         Vector3 position = RandomScreenEdgeToWorldPoint();
         Shark prefab = prefabs[Random.Range(0, prefabs.Length)];
 
-        var shark = prefab.GetAtPosAndRot<Shark>(position, prefab.gameObject.transform.rotation); // We call the inherited method 'Get' which asks the Pool for a GameObject from the queue and then makes it active
+        Shark shark = prefab.GetAtPosAndRot<Shark>(position, prefab.gameObject.transform.rotation); // We call the inherited method 'Get' which asks the Pool for a GameObject from the queue and then makes it active
+        shark.SetRoamGoal();
 
         shark.GetComponent<SpriteRenderer>().sortingOrder = sortingLayerNum--;
     }
