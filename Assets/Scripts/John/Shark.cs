@@ -53,8 +53,6 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     }
     public void SetRoamGoal()
     {
-        animator.ResetTrigger("SharkRoam"); // If it wasn't used, it needs to be removed to not mess things up. Kinda bad placement but can't be onenable cause then it doens't have time
-
         float goal = GetRandomXPos();
 
         StartCoroutine("MoveToX", goal);
@@ -169,9 +167,17 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     private void ResetShark()
     {
         StopCoroutine("SharkBitePhases");
-        gameObject.transform.localScale = Vector3.one;
-        killTimer = 0;
         animator.SetTrigger("SharkRoam");
+
+        gameObject.transform.localScale = Vector3.one;
+
+        killTimer = 0;
+
+        inPosition = false;
+        for (int i = 0; i < sharkTurning.Length; i++)
+        {
+            sharkTurning[i] = false;
+        }
     }
 
 }
