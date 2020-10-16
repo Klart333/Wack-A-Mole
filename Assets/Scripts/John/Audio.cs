@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Audio : MonoBehaviour // I dont like the way the audio is called, should be called externaly not internaly
+public class Audio : MonoBehaviour 
 {
-    public static Audio Instance;
+    public static Audio Instance; 
 
     [SerializeField]
     private AudioClip[] audioClips;
@@ -12,13 +12,11 @@ public class Audio : MonoBehaviour // I dont like the way the audio is called, s
     [SerializeField]
     private AudioMixerGroup[] audioMixerGroups;
 
-    [SerializeField]
-    private float stackingDoubleMaxTimer = 0.75f;
-
     private AudioSource audioSource;
 
     private float stackingDoubleTimer;
-    private float stackingPitch = 1;
+    private float stackingPitch = 0.9f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -30,33 +28,40 @@ public class Audio : MonoBehaviour // I dont like the way the audio is called, s
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-
-        GameManager.Instance.OnSharkKilled += AudioOnSharkKill;
+        GameManager.Instance.OnSharkKilled += AudioOnSharkKilled;
     }
     private void Update()
     {
         stackingDoubleTimer += Time.deltaTime;
-    }
-    private void AudioOnSharkKill(float timeToKillShark)
-    {
-        if (timeToKillShark < 0.75f)
+
+        if (stackingDoubleTimer >= GameManager.Instance.doubleTime) // Resets the stacking pitch if too much time passes 
         {
-            if (stackingDoubleTimer < stackingDoubleMaxTimer)
-            {
-                stackingPitch += 0.1f;
-                PlaySoundEffect("DoubleEffect", "ArcadeBlip1", stackingPitch);
-
-                stackingDoubleTimer = 0;
-            }
-            else
-            {
-                PlaySoundEffect("DoubleEffect", "ArcadeBlip1");
-
-                stackingDoubleTimer = 0;
-                stackingPitch = 1;
-            }
-
+            stackingDoubleTimer = 0;
+            stackingPitch = 0.9f;
         }
+    }
+    private void AudioOnSharkKilled(float sharkTimeToKill)
+    {
+        if (CheckForGun())
+        {
+            PlaySoundEffect("Gunshot", "ArcadeShot"); // Increases the pitch everytime
+            return;
+        }
+
+        if (sharkTimeToKill < GameManager.Instance.doubleTime)
+        {
+            PlaySoundEffect("DoubleEffect", "ArcadeBlip1", stackingPitch += 0.1f); // Increases the pitch everytime
+            stackingDoubleTimer = 0;
+            return;
+        }
+
+        // If all else fails, we just play a punch
+        PlaySoundEffect("Punch", "Punch");
+    }
+
+    private bool CheckForGun()
+    {
+        return PowerupManager.Instance.gunActive;
     }
 
     public void PlaySoundEffect(string audioMixerGroupToFind, string audioClipToFind, float pitch = 1)

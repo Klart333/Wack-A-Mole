@@ -47,7 +47,7 @@ public class SharkSpawner : MonoBehaviour
 
     private void SpawnShark()
     {
-        Vector3 position = RandomScreenToWorldPoint();
+        Vector3 position = RandomScreenEdgeToWorldPoint();
         Shark prefab = prefabs[Random.Range(0, prefabs.Length)];
 
         var shark = prefab.GetAtPosAndRot<Shark>(position, prefab.gameObject.transform.rotation); // We call the inherited method 'Get' which asks the Pool for a GameObject from the queue and then makes it active
@@ -55,9 +55,13 @@ public class SharkSpawner : MonoBehaviour
         shark.GetComponent<SpriteRenderer>().sortingOrder = sortingLayerNum--;
     }
 
-    private static Vector3 RandomScreenToWorldPoint()
+    private static Vector3 RandomScreenEdgeToWorldPoint()
     {
-        Vector2 randomScreenPos = new Vector2(Random.Range(120, 1800), Random.Range(100, 900)); // The screen is 1920 by 1080, remove some for margin
+        // The screen is 1920 by 1080, remove some for margin, except for on the x where we want the max or min
+        float yPos = Random.Range(100, 900);
+        float xPos = Random.Range(1, 3) == 1 ? xPos = 0f : xPos = 1920f; // Basically a coin flip, 3 is not included 
+
+        Vector2 randomScreenPos = new Vector2(xPos, yPos); 
         Vector3 position = Camera.main.ScreenToWorldPoint(randomScreenPos);
         position.z = 0;
         return position;

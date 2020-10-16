@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     [SerializeField]
     private float startDifficulty = 1;
 
+    [SerializeField]
+    public float doubleTime = 0.75f;
 
     public int hitSpree = 0;
     public bool GameOvering = false;

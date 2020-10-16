@@ -15,7 +15,6 @@ public class UIScoreScript : MonoBehaviour
     public int Score { get { return score; } } // Protects score so that only his clone big brother can be accesed, read only
 
     private int score;
-    private float doubleTime = 0.75f;
 
     private CameraScript cameraScript;
 
@@ -42,10 +41,14 @@ public class UIScoreScript : MonoBehaviour
         }
 
 
-        if (sharkTimeToKill < doubleTime) 
+        if (sharkTimeToKill < GameManager.Instance.doubleTime) 
         {
             value = MultiplyEffect(value, 2f, "Double!", 0.1f, 2);
+            AddAndUpdateScore(value);
+
+            return;
         }
+
 
         AddAndUpdateScore(value);
     }

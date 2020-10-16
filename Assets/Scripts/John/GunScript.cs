@@ -17,15 +17,12 @@ public class GunScript : PooledMonoBehaviour
     private void Update()
     {
         FollowMouse();
+
         GetSpeed();
+
         SwingToZero();
 
-        float currentZ = transform.eulerAngles.z;
-        float targetAngle = currentZ - (deltaSpeed * rotationForce);
-
-        Quaternion target = transform.rotation * Quaternion.AngleAxis(targetAngle - transform.eulerAngles.z, new Vector3(0, 0, 1));
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, target, 0.05f);
+        RotateToSpeed();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -34,6 +31,16 @@ public class GunScript : PooledMonoBehaviour
         }
 
         lastPosition = transform.position;
+    }
+
+    private void RotateToSpeed()
+    {
+        float currentZ = transform.eulerAngles.z;
+        float targetAngle = currentZ - (deltaSpeed * rotationForce);
+
+        Quaternion target = transform.rotation * Quaternion.AngleAxis(targetAngle - transform.eulerAngles.z, new Vector3(0, 0, 1));
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, target, 0.05f);
     }
 
     private void FollowMouse()
