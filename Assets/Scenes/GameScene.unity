@@ -345,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &147621689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,6 +2146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: daaf88a10c56b1d429e0e0babf926caa, type: 3}
+  - {fileID: 8300000, guid: 207e716e2d9e0d04ab72bf12d62e8f9a, type: 3}
   audioMixerGroups:
   - {fileID: -6442135358468556767, guid: 0b320e88a2d9dab4298d4be899ce85aa, type: 2}
   stackingDoubleMaxTimer: 0.8
