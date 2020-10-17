@@ -14,6 +14,6 @@ public class ScreenFlashCamera : MonoBehaviour
 
     private void Flash()
     {
-        throw new System.NotImplementedException();
+        
     }
 }
