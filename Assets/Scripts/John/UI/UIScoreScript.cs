@@ -16,11 +16,11 @@ public class UIScoreScript : MonoBehaviour
 
     private int score;
 
-    private CameraScript cameraScript;
+    private CameraShake cameraScript;
 
     private void Start()
     {
-        cameraScript = Camera.main.GetComponent<CameraScript>();
+        cameraScript = Camera.main.GetComponent<CameraShake>();
         GameManager.Instance.OnSharkKilled += IncreaseScore;
     }
 

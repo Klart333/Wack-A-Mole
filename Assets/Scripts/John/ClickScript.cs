@@ -2,41 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PunchScript : MonoBehaviour
+public class ClickScript : MonoBehaviour
 {
-    [SerializeField]
-    private UIHitSpree hitSpree;
+    private UIHitSpree hitSpreeScript;
 
+    private void Awake()
+    {
+        hitSpreeScript = FindObjectOfType<UIHitSpree>();
+    }
     void Update()
     {
-        if (ShouldPunch())
+        if (ShouldClick())
         {
             Audio.Instance.PlaySoundEffect("Punch", "Punch"); // Whether he hit or miss, works with the gun because this script is disabled
-            if (Punch() == true) // If we hit something
+            if (Click() == true) // If we hit something
             {
-                GameManager.Instance.hitSpree++;
-                hitSpree.UpdateHitSpree();
+
             }
             else
             {
-
                 GameManager.Instance.hitSpree = 0;
-                hitSpree.UpdateHitSpree();
+                hitSpreeScript.UpdateHitSpree();
             }
 
         }
     }
-    private bool ShouldPunch()
+    private bool ShouldClick()
     {
         return (Input.GetMouseButtonDown(0) && GameManager.Instance.GameOvering == false);
     }
 
-    private bool Punch()
+    private bool Click()
     {
         Vector3 position = GetWorldPointClicked();
 
         IClickable target = null;
-        target = TryPunchAtPosition(position);
+        target = TryClickAtPosition(position);
 
         return (target != null); // We hit something if target isn't null
     }
@@ -48,7 +49,7 @@ public class PunchScript : MonoBehaviour
         return mousePos;
     }
 
-    private IClickable TryPunchAtPosition(Vector3 position)
+    private IClickable TryClickAtPosition(Vector3 position)
     {
         IClickable target = null;
 

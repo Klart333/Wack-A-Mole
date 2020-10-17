@@ -18,6 +18,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     private float sharkGrowSpeed = 0.5f;
 
     private Animator animator;
+    private UIHitSpree hitSpreeScript;
 
     private float killTimer;
     private bool inPosition;
@@ -26,6 +27,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
 
     private void Awake()
     {
+        hitSpreeScript = GameObject.Find("[TextManager]").GetComponent<UIHitSpree>();
         animator = GetComponent<Animator>();
         sharkTurning = new bool[3];
     }
@@ -120,12 +122,15 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     private float GetRandomXPos()
     {
         float screenXPos = UnityEngine.Random.Range(100, 1800);
+
         Vector3 randomPos = Camera.main.ScreenToWorldPoint(new Vector3(screenXPos, 0, 0));
         return randomPos.x;
     }
 
     public void OnClicked()
     {
+        GameManager.Instance.hitSpree++;
+        hitSpreeScript.UpdateHitSpree();
         GameManager.Instance.SharkKilled(killTimer);
 
         ReturnToPool(); // Returns the shark to the pool
