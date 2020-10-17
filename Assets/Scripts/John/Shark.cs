@@ -12,7 +12,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     private int sharkBitePhases = 5;
     
     [SerializeField]
-    private float moveSpeed = 5;
+    private float startMoveSpeed = 3;
 
     [SerializeField]
     private float sharkGrowSpeed = 0.5f;
@@ -67,11 +67,13 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
             goingLeft = false;
         }
 
+        float scaledMoveSpeed = (Mathf.Log10(GameManager.Instance.DifficultyMultiplier) < 1 ? 1 : Mathf.Log10(GameManager.Instance.DifficultyMultiplier)); // If the multiplier is under 1 take 1 else take the multiplier
+
         if (goingLeft)
         {
             while (transform.position.x > xGoal)
             {
-                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                transform.position += Vector3.left * startMoveSpeed * Time.deltaTime * scaledMoveSpeed; // Scaled with difficulty Multiplier
                 yield return new WaitForSeconds(0.001f);
                 TurnAtShortDistance(xGoal);
             }
@@ -82,7 +84,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
             transform.eulerAngles = new Vector3(0, 180, 0);
             while (transform.position.x < xGoal)
             {
-                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                transform.position += Vector3.right * startMoveSpeed * Time.deltaTime * scaledMoveSpeed;
                 yield return new WaitForSeconds(0.001f);
                 TurnAtShortDistance(xGoal);
             }
