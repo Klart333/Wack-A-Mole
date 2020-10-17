@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolSize: 50
-  totalTimeBeforeChomp: 3
+  totalTimeBeforeChomp: 2
   sharkBitePhases: 5
   moveSpeed: 3
   sharkGrowSpeed: 0.5

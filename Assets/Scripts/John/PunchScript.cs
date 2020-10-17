@@ -11,6 +11,7 @@ public class PunchScript : MonoBehaviour
     {
         if (ShouldPunch())
         {
+            Audio.Instance.PlaySoundEffect("Punch", "Punch"); // Whether he hit or miss, works with the gun because this script is disabled
             if (Punch() == true) // If we hit something
             {
                 GameManager.Instance.hitSpree++;
@@ -18,7 +19,6 @@ public class PunchScript : MonoBehaviour
             }
             else
             {
-                Audio.Instance.PlaySoundEffect("Punch", "Punch"); // Incase we miss, we can safely play the punch sound, we don't want to always play it. And this will work with the gun because when the gun is active this script is disabled
 
                 GameManager.Instance.hitSpree = 0;
                 hitSpree.UpdateHitSpree();

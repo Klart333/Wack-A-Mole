@@ -43,7 +43,7 @@ public class UIScoreScript : MonoBehaviour
 
         if (sharkTimeToKill < GameManager.Instance.doubleTime) 
         {
-            value = MultiplyEffect(value, 2f, "Double!", 0.1f, 2);
+            value = MultiplyEffect(value, 2f, "Double!");
             AddAndUpdateScore(value);
 
             return;
@@ -57,24 +57,24 @@ public class UIScoreScript : MonoBehaviour
     {
         if (PowerupManager.Instance.gunActive && sharkTimeToKill < 0.75f)
         {
-            MultiplyEffect(value, 6f, "Sextuple!", 3, 0.4f);
+            MultiplyEffect(value, 6f, "Sextuple!");
             return true;
         }
         else if (PowerupManager.Instance.gunActive)
         {
-            MultiplyEffect(value, 3f, "Triple!", 2f, 0.1f);
+            MultiplyEffect(value, 3f, "Triple!");
             return true;
         }
 
         return false;
     }
 
-    private int MultiplyEffect(int value, float multiplicativeValue, string response, float screenShakeAmount, float screenShakeTimes)
+    private int MultiplyEffect(int value, float multiplicativeValue, string response)
     {
         value = Mathf.RoundToInt(value * multiplicativeValue);
         responseText.PrintDef(response);
 
-        Vector2[] parms = new Vector2[] { new Vector2(0.1f, 0.1f), new Vector2(100, -100), new Vector2(10, 0) };
+        Vector2[] parms = new Vector2[] { new Vector2(0.1f * multiplicativeValue, 0.1f * multiplicativeValue), new Vector2(Random.Range(0, 100) * multiplicativeValue, Random.Range(0, -100) * multiplicativeValue), new Vector2(10, 0) };
         cameraScript.StartCoroutine("ScreenShakeSinWave", parms);
 
         return value;

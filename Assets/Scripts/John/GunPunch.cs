@@ -19,6 +19,7 @@ public class GunPunch : MonoBehaviour // Basically the same as punchscript, with
     {
         if (ShouldPunch())
         {
+            Audio.Instance.PlaySoundEffect("Gunshot", "ArcadeShot");
             if (Punch() == true) // If we hit something
             {
                 GameManager.Instance.hitSpree += 2; // The gun increases the hitspree with double
@@ -26,7 +27,6 @@ public class GunPunch : MonoBehaviour // Basically the same as punchscript, with
             }
             else
             {
-                Audio.Instance.PlaySoundEffect("Gunshot", "ArcadeShot"); 
 
                 GameManager.Instance.hitSpree = 0;
                 hitSpree.UpdateHitSpree();
