@@ -26,7 +26,7 @@ public class CameraFlash : MonoBehaviour, IClickable
     private void Flash()
     {
         Shark[] sharks = FindObjectsOfType<Shark>();
-        print(sharks.Length);
+
         foreach (Shark shark in sharks)
         {
             shark.gameObject.SetActive(false);
