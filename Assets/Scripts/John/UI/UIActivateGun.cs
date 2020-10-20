@@ -50,7 +50,7 @@ public class UIActivateGun : MonoBehaviour
         animator.ResetTrigger("Reset");
         animator.SetTrigger("Breath");
         
-        activateGunText.text = "Press Space To Activate GUN!";
+        activateGunText.text = "Press To\nActivate GUN!";
         gunActivatible = true;
     }
 
