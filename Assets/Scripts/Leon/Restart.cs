@@ -9,4 +9,6 @@ public class Restart : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+   
 }
