@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class UIActivateGun : MonoBehaviour
+public class UIGunText : MonoBehaviour
 {
     [SerializeField]
     private GunScript gunPrefab;
+
+    [SerializeField]
+    private ActivateGun gunObject;
 
     private TextMeshProUGUI activateGunText;
     private Animator animator;
@@ -49,7 +52,8 @@ public class UIActivateGun : MonoBehaviour
     {
         animator.ResetTrigger("Reset");
         animator.SetTrigger("Breath");
-        
+
+        gunObject.gameObject.SetActive(true);
         activateGunText.text = "Press To\nActivate GUN!";
         gunActivatible = true;
     }
@@ -59,11 +63,12 @@ public class UIActivateGun : MonoBehaviour
         animator.ResetTrigger("Breath");
         animator.SetTrigger("Reset");
 
+        gunObject.gameObject.SetActive(false);
         activateGunText.text = "";
         gunActivatible = false;
     }
 
-    private void ActivateGun()
+    public void ActivateGun()
     {
         coolDownTimer = 0;
 
