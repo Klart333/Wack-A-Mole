@@ -14,7 +14,7 @@ public class ParticleManager : MonoBehaviour
 
     private void PlayParticleSystemOnSharkKilled(float sharkTimeToKill)
     {
-        Vector3 clickPos = Input.touches[0].position;
+        Vector3 clickPos = Input.mousePosition;
         Vector3 position = Camera.main.ScreenToWorldPoint(clickPos);
 
         sharkKillParticleSystem.GetAtPosAndRot<SharkKilledParticleSystem>(position, Quaternion.identity);

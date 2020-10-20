@@ -16,10 +16,7 @@ public class GunScript : PooledMonoBehaviour
     private float deltaDistance;
     private void Update()
     {
-        if (Input.touchCount != 0)
-        {
-            FollowClick();
-        }
+        FollowClick();
 
         GetSpeed();
 
@@ -27,7 +24,7 @@ public class GunScript : PooledMonoBehaviour
 
         RotateToSpeed();
 
-        if (Input.GetMouseButtonDown(0) || Input.touchCount != 0)
+        if (Input.GetMouseButtonDown(0))
         {
             shots--;
             CheckForDisable();
@@ -48,7 +45,7 @@ public class GunScript : PooledMonoBehaviour
 
     private void FollowClick()
     {
-        Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+        Vector3 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 position = clickPos.ReplaceWith(z: -8); // Replaces the z of the vector3 to the specified -8
         transform.position = position;
     }
