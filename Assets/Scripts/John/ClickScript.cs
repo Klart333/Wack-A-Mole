@@ -29,7 +29,7 @@ public class ClickScript : MonoBehaviour
     }
     private bool ShouldClick()
     {
-        return (Input.GetMouseButtonDown(0) && GameManager.Instance.GameOvering == false);
+        return ((Input.touchCount != 0 || Input.GetMouseButton(0)) && GameManager.Instance.GameOvering == false);
     }
 
     private bool Click()
@@ -44,9 +44,9 @@ public class ClickScript : MonoBehaviour
 
     private Vector3 GetWorldPointClicked()
     {
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f); // I don't understand why z has to be 10, and it has to be 10
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        return mousePos;
+        Vector3 clickPos = new Vector3(Input.touches[0].position.x, Input.touches[0].position.y, 10f); // I don't understand why z has to be 10, but it has to be 10
+        clickPos = Camera.main.ScreenToWorldPoint(clickPos);
+        return clickPos;
     }
 
     private IClickable TryClickAtPosition(Vector3 position)

@@ -36,7 +36,7 @@ public class GunPunch : MonoBehaviour // Basically the same as punchscript, with
     }
     private bool ShouldClick()
     {
-        return (Input.GetMouseButtonDown(0) && GameManager.Instance.GameOvering == false);
+        return ((Input.touchCount != 0 || Input.GetMouseButton(0)) && GameManager.Instance.GameOvering == false);
     }
 
     private bool Click()
@@ -44,16 +44,16 @@ public class GunPunch : MonoBehaviour // Basically the same as punchscript, with
         Vector3 position = GetWorldPointClicked();
 
         IClickable target = null;
-        target = TryClickAtPosition(position);
+        target = TryClickAtPosition(Input.touches[0].position);
 
         return (target != null); // We hit something if target isn't null
     }
 
     private Vector3 GetWorldPointClicked()
     {
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f); // I don't understand why z has to be 10, and it has to be 10
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        return mousePos;
+        Vector3 pressPos = new Vector3(Input.touches[0].position.x, Input.touches[0].position.y, 10f); // I don't understand why z has to be 10, and it has to be 10
+        pressPos = Camera.main.ScreenToWorldPoint(pressPos);
+        return pressPos;
     }
 
     private IClickable TryClickAtPosition(Vector3 position)
