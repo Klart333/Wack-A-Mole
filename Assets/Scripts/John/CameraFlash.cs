@@ -25,6 +25,9 @@ public class CameraFlash : MonoBehaviour, IClickable
 
     private void Flash()
     {
+
+        Audio.Instance.PlaySoundEffect("", "CameraSound");
+
         Shark[] sharks = FindObjectsOfType<Shark>();
 
         foreach (Shark shark in sharks)
