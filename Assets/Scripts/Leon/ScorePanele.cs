@@ -5,14 +5,14 @@ using TMPro;
 public class ScorePanele : MonoBehaviour
 {
     TextMeshProUGUI scoreText;
-    int score;
+    int score = 5;
     private void Awake()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
     }
-    public void skrivPoeng()
+   /*public void skrivPoeng()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = score;
-    }
+        scoreText.GetComponent<TextMeshProUGUI>().text = score.ToString();
+    }*/
 
 }
