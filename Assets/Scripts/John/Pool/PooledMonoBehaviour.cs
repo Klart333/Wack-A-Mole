@@ -8,7 +8,6 @@ public class PooledMonoBehaviour : MonoBehaviour
     // Note: Multiple functions with the same name 'Get', this is because the thing they "get" is based on the T and the name can't really be more specifik 
     // Note: Some methods are numbered, this is for clarity on how the main steps for how spawning the objects works
 
-
     [SerializeField]
     private int initialPoolSize = 50;
 

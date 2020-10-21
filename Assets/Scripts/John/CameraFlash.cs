@@ -13,6 +13,7 @@ public class CameraFlash : MonoBehaviour, IClickable
 
     private void Awake()
     {
+        OnFlash = delegate { };
         sharkSpawner = FindObjectOfType<SharkSpawner>();
     }
 
