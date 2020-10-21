@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 public class Saveclass : MonoBehaviour
 {
     [Serializable]
@@ -14,14 +14,29 @@ public class Saveclass : MonoBehaviour
         public List<int> scores = new List<int>();
     }
 
-    [SerializeField]
-    private HighscoreList highscoreList;
-    private void Update()
+    public static Saveclass Instance;
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Instance == null)
         {
-            LoadGame();
-            highscoreList.ShowScores();
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else // Don't want two
+        {
+            Destroy(gameObject);
+        }
+
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+    }
+
+    private void SceneManager_activeSceneChanged(Scene currentScene, Scene nextScene)
+    {
+        if (nextScene.buildIndex == 0)
+        {
+            LoadGame(); // We show the scores when we load into the menu
+            HighscoreList.Instance.ShowScores();
         }
     }
 
@@ -31,8 +46,6 @@ public class Saveclass : MonoBehaviour
 
         if (File.Exists(Application.persistentDataPath + "/SaveData.Highscores"))
         {
-            highscoreList.Reset();
-
             FileStream openedFile = File.Open(Application.persistentDataPath + "/SaveData.Highscores", FileMode.Open);
             Save save = (Save)bf.Deserialize(openedFile);
             openedFile.Close();
@@ -41,11 +54,7 @@ public class Saveclass : MonoBehaviour
             {
                 if (newScore > savedScore)
                 {
-                    print("NEW HIGHSCORE!");
-
                     int index = save.scores.IndexOf(savedScore);
-
-                    print(save.names[index] + " Changed To " + newName);
 
                     save.scores[index] = newScore;
                     save.names[index] = newName;
@@ -59,14 +68,17 @@ public class Saveclass : MonoBehaviour
             createdFile.Close();
             print("Game is saved. We saved this many scores, names: " + save.scores.Count + ", " + save.names.Count);
         }
-        else // The only time there wont exist a file is the first time, when the game is first launched and you end up in the menu, So we want to create a file with 9 empty spots 
+        else // The only time there wont exist a file is the first time, So we want to create a file with 8 empty spots plus the new name and score
         {
             print("There was no File");
 
             Save save = new Save();
             FileStream createdFile = File.Create(Application.persistentDataPath + "/SaveData.Highscores");
 
-            for (int i = 0; i < 9; i++)
+            save.scores.Add(newScore);
+            save.names.Add(newName);
+
+            for (int i = 0; i < 8; i++)
             {
                 save.scores.Add(0);
                 save.names.Add("");
@@ -82,7 +94,7 @@ public class Saveclass : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/SaveData.Highscores"))
         {
-            highscoreList.Reset();
+            HighscoreList.Instance.Reset();
             BinaryFormatter bf = new BinaryFormatter();
 
             FileStream file = File.Open(Application.persistentDataPath + "/SaveData.Highscores", FileMode.Open);
@@ -92,13 +104,13 @@ public class Saveclass : MonoBehaviour
             print("Loading this many scores " + save.scores.Count);
             foreach (var score in save.scores)
             {
-                highscoreList.scores.Add(score);
+                HighscoreList.Instance.scores.Add(score);
             }
 
             print("Loading this many names " + save.scores.Count);
             foreach (var name in save.names)
             {
-                highscoreList.names.Add(name);
+                HighscoreList.Instance.names.Add(name);
             }
 
             print("Game data loaded!");

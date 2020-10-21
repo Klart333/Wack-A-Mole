@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 665018082}
   - component: {fileID: 665018081}
   - component: {fileID: 665018080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1444,7 +1444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e8132f06ddf4e4182b56aeee32aebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highscoreList: {fileID: 781087791}
 --- !u!4 &1862696444
 Transform:
   m_ObjectHideFlags: 0
@@ -1452,7 +1451,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862696442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 171.24446, y: 461.8169, z: -531.2916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class HighscoreList : MonoBehaviour
 {
+    public static HighscoreList Instance; 
+
     public Text highname;
     public Text highscore;
     public Text highnum;
@@ -14,6 +16,19 @@ public class HighscoreList : MonoBehaviour
     public List<string> names = new List<string>();
     [HideInInspector]
     public List<int> scores = new List<int>();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else // Don't want two
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Addperson(string name, int score)
     {

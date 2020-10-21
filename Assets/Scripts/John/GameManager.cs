@@ -96,4 +96,5 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     {
         FindObjectOfType<ScorePanele>().SkrivPoeng(score);
     }
+
 }
