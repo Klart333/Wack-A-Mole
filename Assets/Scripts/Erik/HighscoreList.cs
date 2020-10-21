@@ -9,8 +9,11 @@ public class HighscoreList : MonoBehaviour
     public Text highscore;
     public Text highnum;
 
-    List<string> names = new List<string>();
-    List<int> scores = new List<int>();
+    [HideInInspector]
+    public List<string> names = new List<string>();
+    [HideInInspector]
+    public List<int> scores = new List<int>();
+    
 
     public void Addperson(string name, int score)
     {
@@ -18,8 +21,18 @@ public class HighscoreList : MonoBehaviour
         scores.Add(score);
     }
 
+    public void Reset()
+    {
+        names.RemoveRange(0, names.Count);
+        scores.RemoveRange(0, scores.Count);
+        highname.text = "";
+        highscore.text = "";
+        Uppdate();
+    }
+
     public void Uppdate()
     {
+        
         foreach (string name in names)
         {
             highname.text += name + "\n";
@@ -33,7 +46,6 @@ public class HighscoreList : MonoBehaviour
 
     private void Start()
     {
-        Addperson("aaa", 900);
         Uppdate();
     }
 }
