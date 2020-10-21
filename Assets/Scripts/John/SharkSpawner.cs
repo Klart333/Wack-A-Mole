@@ -19,6 +19,10 @@ public class SharkSpawner : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else // A little trap for unsuspecting objects that think they can be the instance without permission
+        {
+            Destroy(gameObject);
+        }
     }
     private void Update()
     {
@@ -39,7 +43,7 @@ public class SharkSpawner : MonoBehaviour
         }
         else
         {
-            spawnTime = Random.Range(0.2f, 0.5f) / Mathf.Log10(GameManager.Instance.DifficultyMultiplier);
+            spawnTime = Random.Range(0.4f, 0.6f) / Mathf.Log10(GameManager.Instance.DifficultyMultiplier);
         }
 
         return (spawnTimer >= spawnTime) && (GameManager.Instance.Gameover == false);

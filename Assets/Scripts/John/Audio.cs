@@ -24,6 +24,10 @@ public class Audio : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     private void Start()
     {

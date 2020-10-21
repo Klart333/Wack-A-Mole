@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else // Don't want two
+        {
+            Destroy(gameObject);
+        }
 
         OnSharkKilled += IncreaseDifficultyOnSharkKill;
     }

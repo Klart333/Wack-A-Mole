@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunPunch : MonoBehaviour // Basically the same as punchscript, with the exceptions of increase to hitspree and the sound effect played. I felt like this was a really clear way of doing things instead of placing checks in punchScript. 
+public class GunClick : MonoBehaviour // Basically the same as ClickScript, with the exceptions of increase to hitspree and the sound effect played. I felt like this was a really clear way of doing things instead of placing checks in ClickScript. 
 {
     private UIHitSpree hitSpree;
     private ClickScript punchScript;

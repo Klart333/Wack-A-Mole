@@ -18,7 +18,6 @@ public class ScreenFlashCamera : MonoBehaviour
 
     private void Flash()
     {
-        //LERP!
 
         StartCoroutine("FlashThePanel");
     }
@@ -30,17 +29,17 @@ public class ScreenFlashCamera : MonoBehaviour
         float alpha = flashImage.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time) // Makes the alpha 1 
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, alphaGoal, t));
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, alphaGoal, t)); // Lerps the alpha between 0 and 1
             flashImage.color = newColor;
             yield return null;
         }
         
         alpha = flashImage.color.a;
-        alphaGoal = 0f;
+        alphaGoal = 0f; // New goal
 
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time) // Makes the alpha 0
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, alphaGoal, t));
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, alphaGoal, t)); 
             flashImage.color = newColor;
             yield return null;
         }
