@@ -15,6 +15,7 @@ public class CameraFlash : MonoBehaviour, IClickable
     {
         sharkSpawner = FindObjectOfType<SharkSpawner>();
     }
+
     public void OnClicked()
     {
         if (cameraFlashes > 0)

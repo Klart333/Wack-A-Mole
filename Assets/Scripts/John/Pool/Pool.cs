@@ -20,8 +20,14 @@ public class Pool : MonoBehaviour
     // The reason to use a Queue is partly for some performance improvements as a queue is fit for purpose, and partly for simplicity
     // But the main reason is for communication and exposing the intent more explicitly
 
-    private PooledMonoBehaviour poolPrefab; // The prefab this Pool handles, Assigned in GetPool
+    private PooledMonoBehaviour poolPrefab = new PooledMonoBehaviour(); // The prefab this Pool handles, Assigned in GetPool
 
+    private void Start() // Resett
+    {
+        dictionaryPools = new Dictionary<PooledMonoBehaviour, Pool>();
+        queueObjects = new Queue<PooledMonoBehaviour>();
+        poolPrefab = new PooledMonoBehaviour();
+    }
     public static Pool GetPool(PooledMonoBehaviour prefab) // 3. Called from PooledMonoBehaviour.Get<T>, here we get the Pool that handles the prefab in question
     {
         if (dictionaryPools.ContainsKey(prefab)) // We search the dictionary for the Pool, if it's already there we return, otherwise see below

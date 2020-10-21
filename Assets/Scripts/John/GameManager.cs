@@ -1,18 +1,10 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verkligen poola alla hajar, SPECIELLT om det ska funka på mobil
 { 
     public static GameManager Instance;
-
-    [SerializeField]
-    private GameObject loseScreen;
-
-    [SerializeField]
-    private AudioSource bakgrundsMusik;
-
-    [SerializeField]
-    private float maxDifficulty = 3; // Easily changeable
 
     [SerializeField]
     private float difficultyIncreasedFromSharkKill = 0.1f; // Rather long than ununderstanble, right?
@@ -22,6 +14,8 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
     [SerializeField]
     public float doubleTime = 0.75f;
+
+    private GameObject loseScreen;
 
     public int hitSpree = 0;
     public bool GameOvering = false;
@@ -38,22 +32,31 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
             DontDestroyOnLoad(this.gameObject);
         }
 
-        DifficultyMultiplier = startDifficulty;
-
-        loseScreen.SetActive(false);
-
         OnSharkKilled += IncreaseDifficultyOnSharkKill;
     }
 
- 
+    private void Start()
+    {
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+    }
+
+    private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
+    {
+        print(nextScene.buildIndex);
+        if (nextScene.buildIndex == 1) // Resett
+        {
+            loseScreen = GameObject.Find("LosePanel");
+            DifficultyMultiplier = startDifficulty;
+        }
+    }
 
     public void GameOver()
     {
-        bakgrundsMusik.Stop();
-
         Time.timeScale = 0;
 
         loseScreen.SetActive(true);
+
+        StartCoroutine("SwitchSceneAfterDelay", 0.5f);
     }
 
     public void SharkKilled(float timeToKill)
@@ -63,19 +66,13 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
     private void IncreaseDifficultyOnSharkKill(float timer)
     {
-        if (maxDifficulty != 0)
-        {
-            if (DifficultyMultiplier <= maxDifficulty)
-            {
-                DifficultyMultiplier += difficultyIncreasedFromSharkKill;
-            }
-        }
-        else
-        {
-            DifficultyMultiplier += difficultyIncreasedFromSharkKill;
-        }
-        
-        
+        DifficultyMultiplier += difficultyIncreasedFromSharkKill;
+    }
+
+    private IEnumerator SwitchSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(2);
     }
 
 }
