@@ -35,7 +35,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     {
         killTimer += Time.deltaTime;
 
-        if (GameManager.Instance.GameOvering)
+        if (GameManager.Instance.Gameover)
         {
             StopCoroutine("MoveToX");
         }
@@ -47,7 +47,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     }
     private void Grow()
     {
-        if (GameManager.Instance.GameOvering) // The sharks stop to give the illusion of the timeScale being set to 0
+        if (GameManager.Instance.Gameover) // The sharks stop to give the illusion of the timeScale being set to 0
             return;
 
 
@@ -142,7 +142,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
 
         for (int i = 1; i <= sharkBitePhases; i++)
         {
-            if (GameManager.Instance.GameOvering)
+            if (GameManager.Instance.Gameover)
                 break;
 
             animator.SetTrigger("SharkBite" + i.ToString());
@@ -158,7 +158,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
     private IEnumerator Bite()
     {
         animator.SetTrigger("Gameover"); 
-        GameManager.Instance.GameOvering = true;
+        GameManager.Instance.Gameover = true;
 
         yield return new WaitForSeconds(0.5f);
 

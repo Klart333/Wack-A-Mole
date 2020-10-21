@@ -29,7 +29,7 @@ public class ClickScript : MonoBehaviour
     }
     private bool ShouldClick()
     {
-        return (Input.GetMouseButtonDown(0) && GameManager.Instance.GameOvering == false);
+        return (Input.GetMouseButtonDown(0) && GameManager.Instance.Gameover == false);
     }
 
     private bool Click()

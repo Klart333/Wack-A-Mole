@@ -22,12 +22,6 @@ public class Pool : MonoBehaviour
 
     private PooledMonoBehaviour poolPrefab = new PooledMonoBehaviour(); // The prefab this Pool handles, Assigned in GetPool
 
-    private void Start() // Resett
-    {
-        dictionaryPools = new Dictionary<PooledMonoBehaviour, Pool>();
-        queueObjects = new Queue<PooledMonoBehaviour>();
-        poolPrefab = new PooledMonoBehaviour();
-    }
     public static Pool GetPool(PooledMonoBehaviour prefab) // 3. Called from PooledMonoBehaviour.Get<T>, here we get the Pool that handles the prefab in question
     {
         if (dictionaryPools.ContainsKey(prefab)) // We search the dictionary for the Pool, if it's already there we return, otherwise see below

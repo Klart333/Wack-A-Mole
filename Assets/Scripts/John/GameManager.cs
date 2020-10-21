@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     private GameObject loseScreen;
 
     public int hitSpree = 0;
-    public bool GameOvering = false;
+    public bool Gameover = false;
     public float DifficultyMultiplier { get; private set; }
 
     public event Action<float> OnSharkKilled;
@@ -37,23 +37,24 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
     private void Start()
     {
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
+        loseScreen = GameObject.Find("LosePanel");
+        DifficultyMultiplier = startDifficulty;
+
+        SceneManager.activeSceneChanged += ActiveSceneChanged; // PIECE OF SHIT DOESN'T EVEN WORK
     }
 
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
     {
-        print(nextScene.buildIndex);
         if (nextScene.buildIndex == 1) // Resett
         {
             loseScreen = GameObject.Find("LosePanel");
             DifficultyMultiplier = startDifficulty;
+            Gameover = false;
         }
     }
 
     public void GameOver()
     {
-        Time.timeScale = 0;
-
         loseScreen.SetActive(true);
 
         StartCoroutine("SwitchSceneAfterDelay", 0.5f);
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     private IEnumerator SwitchSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        print("Switching Scene");
         SceneManager.LoadScene(2);
     }
 
