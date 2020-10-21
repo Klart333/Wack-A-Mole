@@ -13,7 +13,7 @@ public class ScorePanele : MonoBehaviour
     
    public void SkrivPoeng(int score)
    {
-        scoreText.GetComponent<TextMeshProUGUI>().text = (string)score.ToString();   //
+        scoreText.GetComponent<TextMeshProUGUI>().text = (string)score.ToString();   // denhär koden tar score värdet och printar det på game over scenen
    }
 
 }

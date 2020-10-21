@@ -7,7 +7,7 @@ public class BackToMenu : MonoBehaviour
 {
     public void SwitchToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);  //denna kod byte scen när knappen blir tryckt 
     }
     
     
