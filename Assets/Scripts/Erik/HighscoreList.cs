@@ -16,7 +16,7 @@ public class HighscoreList : MonoBehaviour
 
     private void Start()
     {
-        Uppdate();
+        ShowScores();
     }
 
     public void Addperson(string name, int score)
@@ -31,12 +31,12 @@ public class HighscoreList : MonoBehaviour
         scores.RemoveRange(0, scores.Count);
         highname.text = "";
         highscore.text = "";
-        Uppdate();
+
+        ShowScores();
     }
 
-    public void Uppdate()
+    public void ShowScores()
     {
-        
         foreach (string name in names)
         {
             highname.text += name + "\n";

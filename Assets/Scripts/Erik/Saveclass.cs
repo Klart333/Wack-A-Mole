@@ -34,7 +34,7 @@ public class Saveclass : MonoBehaviour
         {
             print("space");
             LoadGame();
-            highscoreList.Uppdate();
+            highscoreList.ShowScores();
         }
     }
 
@@ -68,6 +68,7 @@ public class Saveclass : MonoBehaviour
             {
                 highscoreList.scores.Add(score);
             }
+
             print("Loading this many names " + save.scores.Count);
             foreach (var name in save.names)
             {
