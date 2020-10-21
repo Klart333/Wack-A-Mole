@@ -16,13 +16,11 @@ public class UIGunText : MonoBehaviour
 
     private float gunCooldown = 10f;
     private float coolDownTimer;
-    private void Awake()
+    private void Start()
     {
         activateGunText = GetComponentInChildren<TextMeshProUGUI>();
         animator = GetComponentInChildren<Animator>();
-    }
-    private void Start()
-    {
+
         GameManager.Instance.OnSharkKilled += CheckIfGun;
     }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verkligen poola alla hajar, SPECIELLT om det ska funka på mobil
 { 
     public static GameManager Instance;
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
     private void Start()
     {
-        loseScreen = GameObject.Find("LosePanel");
         DifficultyMultiplier = startDifficulty;
 
         SceneManager.activeSceneChanged += ActiveSceneChanged; // PIECE OF SHIT DOESN'T EVEN WORK
@@ -47,16 +47,21 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     {
         if (nextScene.buildIndex == 1) // Resett
         {
-            loseScreen = GameObject.Find("LosePanel");
+            hitSpree = 0;
             DifficultyMultiplier = startDifficulty;
             Gameover = false;
+
+            Pool.dictionaryPools = new Dictionary<PooledMonoBehaviour, Pool>(); // Removes the Pools
+
+            OnSharkKilled = delegate { }; // Resets the event
+            OnSharkKilled += IncreaseDifficultyOnSharkKill; // Adds this back
+
+
         }
     }
 
     public void GameOver()
     {
-        loseScreen.SetActive(true);
-
         StartCoroutine("SwitchSceneAfterDelay", 0.5f);
     }
 

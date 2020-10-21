@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 // Du vet, det här scriptet blev väldigt svårt att läsa med alla kommentarer. Det här är varför jag tycker att koden borde få tala för sig själv, bara gör tydlig kod, och om den inte är tydlig smacka på ett F. kappa
 public class Pool : MonoBehaviour
 {
     // Note: Some methods are numbered, this is for clarity on how the main steps for how spawning the objects works
 
-    private static Dictionary<PooledMonoBehaviour, Pool> dictionaryPools = new Dictionary<PooledMonoBehaviour, Pool>();
+    public static Dictionary<PooledMonoBehaviour, Pool> dictionaryPools = new Dictionary<PooledMonoBehaviour, Pool>(); // The List of Main Pools
 
     // Dictionaries are basically Lists but with keys (and i hate them)
     // The advantage of a dictionary is in going through the list and checking for a specific element, lookup time, where a list has to compare every item individually, the dictionary uses a hash lookup algorithm, which is fancy words for magic    

@@ -23,7 +23,6 @@ public class SharkSpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer += Time.deltaTime;
-        print(ShouldSpawn());
         if (ShouldSpawn()) 
         {
             spawnTimer = 0;
@@ -42,6 +41,9 @@ public class SharkSpawner : MonoBehaviour
         {
             spawnTime = Random.Range(0.2f, 0.5f) / Mathf.Log10(GameManager.Instance.DifficultyMultiplier);
         }
+
+        print("Spawn Time: " + spawnTime);
+        print("Difficulty: " + GameManager.Instance.DifficultyMultiplier);
 
         return (spawnTimer >= spawnTime) && (GameManager.Instance.Gameover == false);
     }

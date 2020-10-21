@@ -6,7 +6,7 @@ public class ClickScript : MonoBehaviour
 {
     private UIHitSpree hitSpreeScript;
 
-    private void Awake()
+    private void Start()
     {
         hitSpreeScript = FindObjectOfType<UIHitSpree>();
     }
