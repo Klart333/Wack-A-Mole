@@ -64,8 +64,8 @@ public class HighscoreList : MonoBehaviour
                 if(names.IndexOf(name) == unSortedScores.IndexOf(oldScore)) // If they previously were paired
                 {
                     sortedNames[scores.IndexOf(oldScore)] = name; // Then we find the new index of the old score and assign it to the sorted string list
-                    unSortedScores.Remove(oldScore); // We remove the score so that the same score cannot get multiple names
-                    break; // We don't have to check the rest, also gotta skeedadle from errors
+                    //unSortedScores.Remove(oldScore); // We remove the score so that the same score cannot get multiple names
+                    continue; // We don't have to check the rest, also gotta skeedadle from errors
                 } 
                 // Note: how many layers does 'break' break out of?
             }
