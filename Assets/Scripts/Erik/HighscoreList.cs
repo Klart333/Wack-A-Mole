@@ -13,7 +13,11 @@ public class HighscoreList : MonoBehaviour
     public List<string> names = new List<string>();
     [HideInInspector]
     public List<int> scores = new List<int>();
-    
+
+    private void Start()
+    {
+        Uppdate();
+    }
 
     public void Addperson(string name, int score)
     {
@@ -42,10 +46,5 @@ public class HighscoreList : MonoBehaviour
         {
             highscore.text += score + "\n";
         }
-    }
-
-    private void Start()
-    {
-        Uppdate();
     }
 }

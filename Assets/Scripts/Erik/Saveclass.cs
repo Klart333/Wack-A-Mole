@@ -19,7 +19,7 @@ public class Saveclass : MonoBehaviour
 
     private void Awake()
     {
-        highscoreList.scores.Add(12);
+        highscoreList.scores.Add(155);
         highscoreList.names.Add("ABC");
         highscoreList.scores.Add(15);
         highscoreList.names.Add("BCA");
@@ -38,7 +38,7 @@ public class Saveclass : MonoBehaviour
         }
     }
 
-        public void SaveGame()
+    public void SaveGame()
     {
         BinaryFormatter bf = new BinaryFormatter();
 

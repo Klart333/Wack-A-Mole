@@ -1108,7 +1108,7 @@ GameObject:
   - component: {fileID: 1959826864}
   - component: {fileID: 1959826863}
   m_Layer: 5
-  m_Name: GameName
+  m_Name: GameoverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

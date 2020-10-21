@@ -16,14 +16,15 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
     [SerializeField]
     public float doubleTime = 0.75f;
 
+    public event Action<float> OnSharkKilled;
+
     private GameObject loseScreen;
 
     public int hitSpree = 0;
     public bool Gameover = false;
     public float DifficultyMultiplier { get; private set; }
 
-    public event Action<float> OnSharkKilled;
-
+    private int localScore; // Only used for passing into the SetScore
 
     void Awake()
     {
@@ -55,14 +56,12 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
             OnSharkKilled = delegate { }; // Resets the event
             OnSharkKilled += IncreaseDifficultyOnSharkKill; // Adds this back
-
-
         }
-    }
 
-    public void GameOver()
-    {
-        StartCoroutine("SwitchSceneAfterDelay", 0.5f);
+        if (nextScene.buildIndex == 2)
+        {
+            SetGameoverScore(localScore);
+        }
     }
 
     public void SharkKilled(float timeToKill)
@@ -75,19 +74,21 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
         DifficultyMultiplier += difficultyIncreasedFromSharkKill;
     }
 
+    public void GameOver()
+    {
+        localScore = FindObjectOfType<UIScoreScript>().Score;
+        StartCoroutine("SwitchSceneAfterDelay", 0.5f);
+    }
+
     private IEnumerator SwitchSceneAfterDelay(float delay)
     {
-        int score = FindObjectOfType<UIScoreScript>().Score;
-
         yield return new WaitForSeconds(delay);
 
         print("Switching Scene");
         SceneManager.LoadScene(2);
-
-        SetScore(score); // Doesn't work
     }
 
-    private void SetScore(int score)
+    private void SetGameoverScore(int score)
     {
         FindObjectOfType<ScorePanele>().SkrivPoeng(score);
     }
