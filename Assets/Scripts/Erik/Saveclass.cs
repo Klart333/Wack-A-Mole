@@ -16,55 +16,76 @@ public class Saveclass : MonoBehaviour
 
     [SerializeField]
     private HighscoreList highscoreList;
-
-    private void Awake()
-    {
-        highscoreList.Addperson("1", 12000);
-        highscoreList.Addperson("3", 120);
-        highscoreList.Addperson("2", 1200);
-        highscoreList.Addperson("4", 10);
-        highscoreList.Addperson("6", 6);
-        highscoreList.Addperson("5", 8);
-        highscoreList.Addperson("7", 5);
-        highscoreList.Addperson("8", 4);
-        highscoreList.Addperson("9", 3);
-        highscoreList.Addperson("10", 20);
-        highscoreList.Addperson("11", 1);
-        SaveGame();
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("space");
             LoadGame();
-            highscoreList.Uppdate();
+            highscoreList.ShowScores();
         }
     }
 
-    public void SaveGame()
+    public void SaveGame(int newScore, string newName) // Don't want to override the save file evertime we save, we want to add to it, specifically the score we just got
     {
         BinaryFormatter bf = new BinaryFormatter();
 
-        Save save = new Save();
-        FileStream createdFile = File.Create(Application.persistentDataPath + "/SaveData.Mauritz");
+        if (File.Exists(Application.persistentDataPath + "/SaveData.Highscores"))
+        {
+            highscoreList.Reset();
 
-        save.scores.AddRange(highscoreList.scores);
-        save.names.AddRange(highscoreList.names);
-        bf.Serialize(createdFile, save);
-        createdFile.Close();
-        print("Game is saved. We saved this many scores, names: " + save.scores.Count + ", " + save.names.Count);
+            FileStream openedFile = File.Open(Application.persistentDataPath + "/SaveData.Highscores", FileMode.Open);
+            Save save = (Save)bf.Deserialize(openedFile);
+            openedFile.Close();
+
+            foreach  (int savedScore in save.scores)
+            {
+                if (newScore > savedScore)
+                {
+                    print("NEW HIGHSCORE!");
+
+                    int index = save.scores.IndexOf(savedScore);
+
+                    print(save.names[index] + " Changed To " + newName);
+
+                    save.scores[index] = newScore;
+                    save.names[index] = newName;
+                    break; // We want to break out of the loop if we replaced an item for two reasons, 1. We're done 2. We just modified the collection and need to quickly flee the scene 
+                }
+            }
+            // We make a new file and put the saved values from the last in there
+            FileStream createdFile = File.Create(Application.persistentDataPath + "/SaveData.Highscores");
+
+            bf.Serialize(createdFile, save);
+            createdFile.Close();
+            print("Game is saved. We saved this many scores, names: " + save.scores.Count + ", " + save.names.Count);
+        }
+        else // The only time there wont exist a file is the first time, when the game is first launched and you end up in the menu, So we want to create a file with 9 empty spots 
+        {
+            print("There was no File");
+
+            Save save = new Save();
+            FileStream createdFile = File.Create(Application.persistentDataPath + "/SaveData.Highscores");
+
+            for (int i = 0; i < 9; i++)
+            {
+                save.scores.Add(0);
+                save.names.Add("");
+            }
+            
+            bf.Serialize(createdFile, save);
+            createdFile.Close();
+            print("Game is saved. We saved this many scores, names: " + save.scores.Count + ", " + save.names.Count);
+        }
     }
 
     public void LoadGame()
     {
-        if (File.Exists(Application.persistentDataPath + "/SaveData.Mauritz"))
+        if (File.Exists(Application.persistentDataPath + "/SaveData.Highscores"))
         {
             highscoreList.Reset();
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.Mauritz", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/SaveData.Highscores", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
@@ -73,6 +94,7 @@ public class Saveclass : MonoBehaviour
             {
                 highscoreList.scores.Add(score);
             }
+
             print("Loading this many names " + save.scores.Count);
             foreach (var name in save.names)
             {
@@ -86,4 +108,6 @@ public class Saveclass : MonoBehaviour
             print("There is no save data!");
         }
     }
+
+
 }
