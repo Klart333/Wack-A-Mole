@@ -7,7 +7,7 @@ public class Restart : MonoBehaviour
 {
     public void BackToGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);  //denna kod byte scen när knappen blir tryckt 
     }
 
    
