@@ -15,6 +15,7 @@ public class CameraFlash : MonoBehaviour, IClickable
     {
         sharkSpawner = FindObjectOfType<SharkSpawner>();
     }
+
     public void OnClicked()
     {
         if (cameraFlashes > 0)
@@ -25,6 +26,9 @@ public class CameraFlash : MonoBehaviour, IClickable
 
     private void Flash()
     {
+
+        Audio.Instance.PlaySoundEffect("", "CameraSound");
+
         Shark[] sharks = FindObjectsOfType<Shark>();
 
         foreach (Shark shark in sharks)
