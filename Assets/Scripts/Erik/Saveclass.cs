@@ -19,13 +19,18 @@ public class Saveclass : MonoBehaviour
 
     private void Awake()
     {
-        highscoreList.scores.Add(155);
-        highscoreList.names.Add("ABC");
-        highscoreList.scores.Add(15);
-        highscoreList.names.Add("BCA");
-        highscoreList.scores.Add(120);
-        highscoreList.names.Add("CBA");
-        SaveGame();        
+        highscoreList.Addperson("1", 12000);
+        highscoreList.Addperson("3", 120);
+        highscoreList.Addperson("2", 1200);
+        highscoreList.Addperson("4", 10);
+        highscoreList.Addperson("6", 6);
+        highscoreList.Addperson("5", 8);
+        highscoreList.Addperson("7", 5);
+        highscoreList.Addperson("8", 4);
+        highscoreList.Addperson("9", 3);
+        highscoreList.Addperson("10", 20);
+        highscoreList.Addperson("11", 1);
+        SaveGame();
     }
 
     private void Update()
@@ -34,7 +39,7 @@ public class Saveclass : MonoBehaviour
         {
             print("space");
             LoadGame();
-            highscoreList.ShowScores();
+            highscoreList.Uppdate();
         }
     }
 
@@ -68,7 +73,6 @@ public class Saveclass : MonoBehaviour
             {
                 highscoreList.scores.Add(score);
             }
-
             print("Loading this many names " + save.scores.Count);
             foreach (var name in save.names)
             {
@@ -83,5 +87,3 @@ public class Saveclass : MonoBehaviour
         }
     }
 }
-
-
