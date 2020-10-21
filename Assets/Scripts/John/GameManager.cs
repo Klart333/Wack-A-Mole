@@ -77,9 +77,18 @@ public class GameManager : MonoBehaviour // STOR FACKING NOTE: Du borde verklige
 
     private IEnumerator SwitchSceneAfterDelay(float delay)
     {
+        int score = FindObjectOfType<UIScoreScript>().Score;
+
         yield return new WaitForSeconds(delay);
+
         print("Switching Scene");
         SceneManager.LoadScene(2);
+
+        SetScore(score); // Doesn't work
     }
 
+    private void SetScore(int score)
+    {
+        FindObjectOfType<ScorePanele>().SkrivPoeng(score);
+    }
 }
