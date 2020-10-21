@@ -9,8 +9,6 @@ public class ScorePanele : MonoBehaviour
     private void Awake()
     {
         scoreText = GetComponent<TextMeshProUGUI>();   // här hemtar jag komponenten textmesh pro UGUI
-        SkrivPoeng(5);
-
     }
     
    public void SkrivPoeng(int score)
