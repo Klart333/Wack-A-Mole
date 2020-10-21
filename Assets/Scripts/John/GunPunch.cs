@@ -34,6 +34,7 @@ public class GunPunch : MonoBehaviour // Basically the same as punchscript, with
 
         }
     }
+
     private bool ShouldClick()
     {
         return (Input.GetMouseButtonDown(0) && GameManager.Instance.GameOvering == false);
