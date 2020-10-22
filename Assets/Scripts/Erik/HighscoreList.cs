@@ -76,13 +76,14 @@ public class HighscoreList : MonoBehaviour
         {
             foreach (int oldScore in unSortedScores)
             {
-                if(names.IndexOf(name) == unSortedScores.IndexOf(oldScore)) // If they previously were paired
+                if (names.IndexOf(name) == unSortedScores.IndexOf(oldScore)) // If they previously were paired
                 {
-                    sortedNames[scores.IndexOf(oldScore)] = name; // Then we find the new index of the old score and assign it to the sorted string list
-                    //unSortedScores.Remove(oldScore); // We remove the score so that the same score cannot get multiple names
-                    continue; // We don't have to check the rest, also gotta skeedadle from errors
-                } 
-                // Note: how many layers does 'break' break out of?
+                    int index = scores.IndexOf(oldScore);
+                    
+                    sortedNames[index] = name; // Then we find the new index of the old score and assign it to the sorted string list
+                    unSortedScores[unSortedScores.IndexOf(oldScore)] = 0; // We remove the score so that the same score cannot get multiple names, we cannot delete it becuase that would fuck up the index
+                    break; // We don't have to check the rest, also gotta skeedadle from errors
+                }
             }
             
         }
