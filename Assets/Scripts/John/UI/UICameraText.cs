@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class UICameraText : MonoBehaviour
+public class UICameraText : MonoBehaviour // Just displayes the amount of flashes the player has left
 {
     [SerializeField]
     private CameraFlash cameraFlash;

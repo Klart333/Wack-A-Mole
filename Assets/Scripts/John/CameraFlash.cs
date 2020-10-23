@@ -27,27 +27,26 @@ public class CameraFlash : MonoBehaviour, IClickable
 
     private void Flash()
     {
-
-        Audio.Instance.PlaySoundEffect("", "CameraSound");
+        Audio.Instance.PlaySoundEffect("", "CameraSound"); // Plays the flash sound, doesn't necessarily need a mixer group 
 
         Shark[] sharks = FindObjectsOfType<Shark>();
 
         foreach (Shark shark in sharks)
         {
-            shark.gameObject.SetActive(false);
+            shark.gameObject.SetActive(false); // Sends every shark on the screen back to its pool
         }
 
         cameraFlashes--;
-        OnFlash();
+        OnFlash(); // Calls the event, so that every connected script does its part
 
-        StartCoroutine("DeactivateSharkSpawner");
+        StartCoroutine("DeactivateSharkSpawnerForDelay", 3); 
     }
 
-    private IEnumerator DeactivateSharkSpawner()
+    private IEnumerator DeactivateSharkSpawnerForDelay(float delay) // Deactivates the sharkspawner for delay seconds
     {
         sharkSpawner.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(delay);
 
         sharkSpawner.gameObject.SetActive(true);
     }

@@ -24,6 +24,7 @@ public class Audio : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
         else
         {
             Destroy(gameObject);
@@ -44,7 +45,7 @@ public class Audio : MonoBehaviour
             stackingPitch = 0.9f;
         }
     }
-    private void AudioOnSharkKilled(float sharkTimeToKill)
+    public void AudioOnSharkKilled(float sharkTimeToKill)
     {
         if (CheckForGun())
         {
@@ -60,7 +61,7 @@ public class Audio : MonoBehaviour
         }
 
         // If all else fails, we just play a punch
-        PlaySoundEffect("Punch", "Punch");
+        //PlaySoundEffect("Punch", "Punch");
     }
 
     private bool CheckForGun()

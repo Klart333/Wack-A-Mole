@@ -81,7 +81,7 @@ public class HighscoreList : MonoBehaviour
                     int index = scores.IndexOf(oldScore);
                     
                     sortedNames[index] = name; // Then we find the new index of the old score and assign it to the sorted string list
-                    unSortedScores[unSortedScores.IndexOf(oldScore)] = 0; // We remove the score so that the same score cannot get multiple names, we cannot delete it becuase that would fuck up the index
+                    // (broke as logic) unSortedScores[unSortedScores.IndexOf(oldScore)] = 0; // We remove the score so that the same score cannot get multiple names, we cannot delete it becuase that would fuck up the index
                     break; // We don't have to check the rest, also gotta skeedadle from errors
                 }
             }

@@ -74,7 +74,8 @@ public class UIScoreScript : MonoBehaviour
         value = Mathf.RoundToInt(value * multiplicativeValue);
         responseText.PrintDef(response);
 
-        Vector2[] parms = new Vector2[] { new Vector2(0.1f * multiplicativeValue, 0.1f * multiplicativeValue), new Vector2(Random.Range(0, 100) * multiplicativeValue, Random.Range(0, -100) * multiplicativeValue), new Vector2(10, 0) };
+        Vector2 randomShakeFrequency = new Vector2(Random.Range(0, 100) * multiplicativeValue, Random.Range(0, -100) * multiplicativeValue / 2);
+        Vector2[] parms = new Vector2[] { new Vector2(0.05f * multiplicativeValue, 0.05f * multiplicativeValue), randomShakeFrequency, new Vector2(10, 0) };
         cameraScript.StartCoroutine("ScreenShakeSinWave", parms);
 
         return value;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScreenFlashCamera : MonoBehaviour
+public class ScreenFlashCamera : MonoBehaviour // Sets the alpha of a panel in the canvas, may be a little scuffed method of a screen flash, but it works fine so whatever
 {
     [SerializeField]
     private CameraFlash cameraFlash;
