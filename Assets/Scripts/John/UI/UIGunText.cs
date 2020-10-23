@@ -14,33 +14,30 @@ public class UIGunText : MonoBehaviour
 
     private bool gunActivatible;
 
-    private float gunCooldown = 10f;
+    private int gunHitSpreeRequirement = 20;
+    private float gunCooldown = 20f;
     private float coolDownTimer;
+
     private void Start()
     {
         activateGunText = GetComponentInChildren<TextMeshProUGUI>();
         animator = GetComponentInChildren<Animator>();
 
-        GameManager.Instance.OnSharkKilled += CheckIfGun;
+        GameManager.Instance.OnSharkKilled += TryActivateGun; // Everytime we kill a shark we check if the gun can be activated
     }
 
     private void Update()
     {
         coolDownTimer += Time.deltaTime;
-
-        if (gunActivatible && Input.GetKeyDown(KeyCode.Space))
-        {
-            ActivateGun();
-        }
     }
 
-    private void CheckIfGun(float timeToKill)
+    private void TryActivateGun(float timeToKill = 0)
     {
-        if (GameManager.Instance.hitSpree >= 20 && coolDownTimer >= gunCooldown)
+        if (GameManager.Instance.hitSpree >= gunHitSpreeRequirement && coolDownTimer >= gunCooldown) // If the hitspree and the timer are good we make the gun activatable
         {
             GunActivatible();
         }
-        else
+        else // Otherwise it's not
         {
             GunNotActivatible();
         }
@@ -48,7 +45,7 @@ public class UIGunText : MonoBehaviour
 
     private void GunActivatible()
     {
-        animator.ResetTrigger("Reset");
+        animator.ResetTrigger("Reset"); // Incase the trigger was active, it needs to get reset, otherwise it will immediately go back 
         animator.SetTrigger("Breath");
 
         gunObject.gameObject.SetActive(true);
@@ -56,7 +53,7 @@ public class UIGunText : MonoBehaviour
         gunActivatible = true;
     }
 
-    private void GunNotActivatible()
+    private void GunNotActivatible() // Same but false
     {
         animator.ResetTrigger("Breath");
         animator.SetTrigger("Reset");
@@ -70,7 +67,9 @@ public class UIGunText : MonoBehaviour
     {
         coolDownTimer = 0;
 
-        gunPrefab.Get<GunScript>();
-        PowerupManager.Instance.gunActive = true;
+        gunPrefab.Get<GunScript>(); // Gets a gun from the pool
+        PowerupManager.Instance.gunActive = true; 
+
+        TryActivateGun(); // We want to deactivate the Gun UI when we activate the gun 
     }
 }

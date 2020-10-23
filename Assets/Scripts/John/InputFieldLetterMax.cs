@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class InputFieldLetterMax : MonoBehaviour
+public class InputFieldLetterMax : MonoBehaviour // If the length of the string is more than three, just return the first three letters
 {
     [SerializeField]
     private int letterMax = 3;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-public class SaveScoreAndName : MonoBehaviour
+public class SaveScoreAndName : MonoBehaviour // On the button pressed we save the game with the values from the text and namefield
 {
     [SerializeField]
     private TextMeshProUGUI scoreText;
