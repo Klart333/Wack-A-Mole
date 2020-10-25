@@ -121,7 +121,7 @@ public class Shark : PooledMonoBehaviour, IClickable // I realise in hindsight t
 
     private float GetRandomXPos()
     {
-        float screenXPos = UnityEngine.Random.Range(100, 1800);
+        float screenXPos = UnityEngine.Random.Range(100, Camera.main.pixelWidth - 100);
 
         Vector3 randomPos = Camera.main.ScreenToWorldPoint(new Vector3(screenXPos, 0, 0));
         return randomPos.x;

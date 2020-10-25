@@ -63,11 +63,11 @@ public class SharkSpawner : MonoBehaviour
     private static Vector3 RandomScreenEdgeToWorldPoint()
     {
         // The screen is 1920 by 1080, remove some for margin, except for on the x where we want the max or min
-        float xPos = Random.Range(1, 3) == 1 ? xPos = 0f : xPos = 1920f; // Basically a coin flip, 3 is not included 
-        float yPos = Random.Range(100, 900);
+        float xPos = Random.Range(1, 3) == 1 ? xPos = 0f : xPos = Camera.main.pixelWidth; // Basically a coin flip, 3 is not included 
+        float yPos = Random.Range(100, Camera.main.pixelHeight - 100);
         if (xPos == 1920) // The shark can't be allowed spawn over the camera
         {
-            yPos = Random.Range(300, 900);
+            yPos = Random.Range(300, Camera.main.pixelHeight - 100);
         }
 
         Vector2 randomScreenPos = new Vector2(xPos, yPos); 
