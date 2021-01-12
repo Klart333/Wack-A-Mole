@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour // The GameManager ties all the seperat
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+
+            print("Registered for event");
+            SceneManager.activeSceneChanged += ActiveSceneChanged; // The ActiveSceneChanged method wont call when we enter the gamescene for the first time because the event needs be registered
+
         }
         else // Don't want two, a problem when we return to the gamescene and there is a GameManager there
         {
@@ -40,15 +44,16 @@ public class GameManager : MonoBehaviour // The GameManager ties all the seperat
         OnSharkKilled += IncreaseDifficultyOnSharkKill;
     }
 
+
     private void Start()
     {
         DifficultyMultiplier = startDifficulty;
-
-        SceneManager.activeSceneChanged += ActiveSceneChanged; // The ActiveSceneChanged method wont call when we enter the gamescene for the first time because the event needs be registered
     }
 
     private void ActiveSceneChanged(Scene currentScene, Scene nextScene)
     {
+        FindObjectOfType<FadePanel>().StartCoroutine(FindObjectOfType<FadePanel>().FadeIn());
+
         if (nextScene.buildIndex == 1) // When we enter the gamescene we want to reset
         {
             hitSpree = 0;
@@ -56,7 +61,6 @@ public class GameManager : MonoBehaviour // The GameManager ties all the seperat
             Gameover = false;
 
             Pool.dictionaryPools = new Dictionary<PooledMonoBehaviour, Pool>(); // Removes the stored Pools
-
 
             OnSharkKilled = delegate { }; // Resets the event, so that it doesn't have old functions with messed up references 
             
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour // The GameManager ties all the seperat
         if (nextScene.buildIndex == 2) // If the scene is the gameover scene we need to pass in the score
         {
             SetGameoverScore(localScore);
+            SaveScore.SaveGame(localScore, PlayerPrefs.GetString("PlayerName"));
         }
     }
 

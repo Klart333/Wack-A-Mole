@@ -4,26 +4,18 @@ using UnityEngine;
 
 public class SharkSpawner : MonoBehaviour
 {
-    public static SharkSpawner Instance;
-
     [SerializeField]
     private Shark[] prefabs; // Array of shark prefabs, accessed through the script
 
     private float spawnTimer;
     private int sortingLayerNum = 0;
+    private new Camera camera;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else // A little trap for unsuspecting objects that think they can be the instance without permission
-        {
-            Destroy(gameObject);
-        }
+        camera = FindObjectOfType<Camera>();
     }
+
     private void Update()
     {
         spawnTimer += Time.deltaTime;
@@ -60,14 +52,14 @@ public class SharkSpawner : MonoBehaviour
         shark.GetComponent<SpriteRenderer>().sortingOrder = sortingLayerNum--;
     }
     
-    private static Vector3 RandomScreenEdgeToWorldPoint()
+    private Vector3 RandomScreenEdgeToWorldPoint()
     {
         // The screen is 1920 by 1080, remove some for margin, except for on the x where we want the max or min
-        float xPos = Random.Range(1, 3) == 1 ? xPos = 0f : xPos = Camera.main.pixelWidth; // Basically a coin flip, 3 is not included 
-        float yPos = Random.Range(100, Camera.main.pixelHeight - 100);
-        if (xPos == 1920) // The shark can't be allowed spawn over the camera
+        float xPos = Random.Range(1, 3) == 1 ? xPos = 0f : xPos = camera.pixelWidth; // Basically a coin flip, 3 is not included 
+        float yPos = Random.Range(100, camera.pixelHeight - 100);
+        if (xPos == camera.pixelWidth) // The shark can't be allowed spawn over the camera
         {
-            yPos = Random.Range(300, Camera.main.pixelHeight - 100);
+            yPos = Random.Range((float)camera.pixelHeight * 0.30f, (float)camera.pixelHeight - 100);
         }
 
         Vector2 randomScreenPos = new Vector2(xPos, yPos); 
